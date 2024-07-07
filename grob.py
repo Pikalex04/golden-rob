@@ -5,9 +5,12 @@ from os import listdir
 
 from better_functions import better_json as bj
 
+intents = Intents.default()
+intents.message_content = True
+
 bot = commands.Bot(
     command_prefix=bj.json_load('grobDB/settings/prefix.json'), owner_ids=bj.json_load('grobDB/settings/mods.json'),
-    case_insensitive=True, intents=Intents.default().all())
+    case_insensitive=True, intents=intents)
 
 for directory in ['grobDB/commands', 'grobDB/events']:
     for command in listdir(directory):
