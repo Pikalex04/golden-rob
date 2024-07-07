@@ -25,19 +25,27 @@ The bot provides a help command for any of these functions. Check that out for m
 * discord.py
 * requests (for a hidden command)
 
-## Contact us
+## Roadmap
 
-You can contact us for any problem at [Mario Kart DS Network](https://discord.gg/pa9bea6).
+- [ ] Getting the bot verified.
 
-## Authors
+## Contributing
 
-* Pikalex04
+We accept contributions and we deeply appreciate any contributor who wants to help making useful functions or improving the existing ones.
+
+To contribute, feel free to contact me directly on Discord at @pikalex04 or us at [Mario Kart DS Network](https://discord.gg/pa9bea6).
+You can also open an issue or fork the repo and create a pull request if you are sure your contribution is rightful and helpful.
 
 ## License
 
 This project is licensed under the GNU License - see the LICENSE file for details.
 
-## Acknowledgments
+## Authors and Acknowledgments
 
+* Pikalex04, main author.
 * SpoinKoza, for maintaining the accuracy of the Players' Page database and helping with some functions.
 * Mario Kart DS Network, for their initial usage of the bot and their lovely suggestions.
+
+## Contact us
+
+You can contact us for any problem at [Mario Kart DS Network](https://discord.gg/pa9bea6).
