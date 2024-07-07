@@ -1,0 +1,32 @@
+[
+  [
+    "Patreon",
+    [
+      "https://patreon.com/"
+    ],
+    "patreon"
+  ],
+  [
+    "Twitch",
+    [
+      "https://twitch.tv/"
+    ],
+    "twitch"
+  ],
+  [
+    "X",
+    [
+      "https://twitter.com/",
+      "https://x.com/"
+    ],
+    "x"
+  ],
+  [
+    "YouTube",
+    [
+      "https://youtube.com/",
+      "https://www.youtube.com/"
+    ],
+    "youtube"
+  ]
+]
