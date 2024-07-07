@@ -1,6 +1,6 @@
 # PRIVACY NOTICE
 
-**Last updated July 06, 2024**
+**Last updated July 07, 2024**
 
 
 
@@ -122,11 +122,11 @@ When we have no ongoing legitimate need to process your information, we will eit
 
 
 
-## 8. DO WE COLLECT INFORMATION FROM MINORS?
+## 8. DO WE COLLECT PERSONAL INFORMATION FROM MINORS?
 
-**In Short**: We do not knowingly collect data from or market to children under 18 years of age.
+**In Short**: We do not knowingly collect personal information of any kind, including from children under 18 years of age.
 
-We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services. If we learn that information from users less than 18 years of age has been collected, we will terminate the User's accessibility to the Services and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at [Mario Kart DS Network](https://discord.gg/pa9bea6).
+We do not knowingly collect, solicit data from, or market to anyone in general, including children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are at least 13 and the parent or guardian of such a minor and consent to such minor dependent’s use of the Services. If we learn that personal information from users less than 18 years of age has been collected unauthorizedly, we will terminate the User's accessibility to the Services and take reasonable measures to promptly delete such data from our records. If you become aware of any personal information we may have unauthorizedly collected from children under age 18 unauthorizedly, please contact us at [Mario Kart DS Network](https://discord.gg/pa9bea6).
 
 
 

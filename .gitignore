@@ -3,6 +3,7 @@ grobDB/commands/online.py
 grobDB/ppDB/*/*
 !grobDB/ppDB/*/.gitkeep
 grobDB/users/*
+!grobDB/users/.gitkeep
 test/
 
 # Golden ROB-specific
