@@ -28,6 +28,7 @@ The bot provides a help command for any of these functions. Check that out for m
 ## Roadmap
 
 - [ ] Getting the bot verified.
+- [ ] Using only (or mostly, just when convenient) SQL databases.
 
 ## Contributing
 
