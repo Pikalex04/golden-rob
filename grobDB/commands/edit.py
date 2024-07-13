@@ -119,29 +119,34 @@ class ProfileMenu(ViewModel):
 
     @view_button(label='Country', style=ButtonStyle.gray, emoji='<:red_team:1233070943384109077>')
     async def country_button(self, interaction, button):
-        e = Embed(description=f'{interaction.user.mention}, please send the flag emoji of your country!')
+        e = Embed(
+            description=f'{interaction.user.mention}, please react to __**this message**__ with the flag emoji of your '
+                        'country!')
         e.set_author(name='Edit Country', icon_url='https://cdn.discordapp.com/emojis/1233070943384109077.png?size=256')
         await interaction.response.send_message(embed=e)
         await interaction.message.delete()
 
-        def check(msg):
-            return msg.channel.id == interaction.channel_id and msg.author.id == interaction.user.id
+        async def check(r, user):
+            flag_check = True
+            print(str(r.emoji))
+            try:
+                _ = bc.get_official_country(bc.letter_parser(str(r.emoji)).upper())
+            except KeyError:
+                flag_check = False
+            return (r.message.created_at == await interaction.original_message().created_at and
+                    user.id == interaction.user.id and flag_check)
 
         try:
-            flag = await interaction.client.wait_for('message', timeout=60, check=check)
+            flag = await interaction.client.wait_for('reaction_add', timeout=60, check=check)
         except TimeoutError:
             await interaction.channel.send(embed=be.timeout_embed(interaction.user.mention))
         else:
-            try:
-                flag_code = bc.letter_parser(flag.content).upper()
-                value = [bc.get_official_country(flag_code), f':flag_{flag_code.lower()}:']
-            except KeyError:
-                await interaction.channel.send(
-                    embed=be.error_embed(f'{interaction.user.mention}, that is not a country flag emoji!'))
-            else:
-                update_profile(interaction.user, 'country', value)
-                await interaction.channel.send(
-                    embed=be.success_embed(f'{interaction.user.mention}, your country was updated successfully!'))
+            flag_code = bc.letter_parser(str(flag[0].emoji)).upper()
+            update_profile(
+                interaction.user, 'country', [bc.get_official_country(flag_code), f':flag_{flag_code.lower()}:'])
+            response = await interaction.channel.send(
+                embed=be.success_embed(f'{interaction.user.mention}, your country was updated successfully!'))
+            await response.delete(delay=10)
         await interaction.delete_original_response()
 
     @view_button(label='Socials', style=ButtonStyle.gray, emoji='<:multiplayer_icon:1233072100223488040>')
@@ -193,7 +198,7 @@ async def socials_func(modal, interaction):
 async def go_back_func(interaction, ctx):
     e = Embed(title='What do you want to edit?')
     e.set_author(name='Edit profile', icon_url='https://cdn.discordapp.com/emojis/1233072101808935013.png?size=256')
-    for field in [['<:rob:1232701955781165087> Player Data', 'Includes things like Bio, Country and Main Socials'],
+    for field in [['<:rob:1232701955781165087> Player Data', 'Includes Bio, Country and Main Socials'],
                   ['<:race_finished:1232707068759244891> Rankings',
                    'Includes links to the player\'s rankings pages'],
                   ['<:friend_online:1232707683199746099> Friend Code',
@@ -435,7 +440,7 @@ def run(bot):
     async def edit(ctx):
         e = Embed(title='What do you want to edit?')
         e.set_author(name='Edit profile', icon_url='https://cdn.discordapp.com/emojis/1233072101808935013.png?size=256')
-        for field in [['<:rob:1232701955781165087> Player Data', 'Includes things like Bio, Country and Main Socials'],
+        for field in [['<:rob:1232701955781165087> Player Data', 'Includes Bio, Country and Main Socials'],
                       ['<:race_finished:1232707068759244891> Rankings',
                        'Includes links to the player\'s rankings pages'],
                       ['<:friend_online:1232707683199746099> Friend Code',
