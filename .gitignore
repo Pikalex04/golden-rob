@@ -10,7 +10,11 @@ test/
 srobDB/
 srob.py
 
-
+# Golden ROB sensitive files
+grobDB/settings/fc.json
+grobDB/settings/mod_log.json
+grobDB/settings/mods.json
+grobDB/settings/token.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
