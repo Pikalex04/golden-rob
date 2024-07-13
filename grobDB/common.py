@@ -149,7 +149,7 @@ def make_leaderboard(page, data, pages, formatting):
 
 
 async def pp_leaderboard(ctx, chart, start, formatting):
-    if not bj.json_load(f'grobDB/ppDB/maintenance.json')['status']:
+    try:
         data = bj.json_load(chart)
         pages = []
         for i in range(ceil(len(data['times']) / 10)):
@@ -166,6 +166,8 @@ async def pp_leaderboard(ctx, chart, start, formatting):
         e, hide = make_leaderboard(page, data, pages, formatting)
         await ctx.send(embed=e, view=LeaderboardView(
             hide=hide, data=data, pages=pages, page=page, formatting=formatting, ctx=ctx))
-    else:
-        await ctx.send(embed=be.error_embed(
-            f'{ctx.author.mention}, the Players\' Page database is in maintenance right now! Please try again later.'))
+    except Exception:
+        if bj.json_load(f'grobDB/ppDB/maintenance.json')['status']:
+            await ctx.send(embed=be.error_embed(
+                f'{ctx.author.mention}, there was an error, likely due to the Players\' Page database being in '
+                'maintenance right now! Please try again later.'))
