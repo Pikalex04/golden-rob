@@ -83,7 +83,7 @@ class MainMenu(ViewModel):
     async def friend_code_button(self, interaction, button):
         try:
             friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-        except KeyError:
+        except (KeyError, FileNotFoundError):
             friend_codes = check_profile(interaction.user.id)
         if friend_codes:
             hide = False
@@ -181,7 +181,7 @@ async def socials_func(modal, interaction):
             if modal.children[0].value.lower().startswith(social_link):
                 try:
                     existing_profiles = (bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json'))['socials']
-                except FileNotFoundError:
+                except (KeyError, FileNotFoundError):
                     existing_profiles = check_profile(interaction.user.id)
                 existing_profiles[social[2]] = modal.children[0].value
                 update_profile(interaction.user, 'socials', existing_profiles)
@@ -318,7 +318,7 @@ async def add_friend_func(modal, interaction):
             else:
                 try:
                     user_friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-                except KeyError:
+                except (KeyError, FileNotFoundError):
                     user_friend_codes = check_profile(interaction.user.id)
                 user_friend_codes.append([code, modal.children[1].value])
                 update_profile(interaction.user, 'friend_codes', user_friend_codes)
@@ -332,7 +332,7 @@ async def main_function_friend_func(interaction, label, func, ctx):
     options = []
     try:
         friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-    except KeyError:
+    except (KeyError, FileNotFoundError):
         friend_codes = check_profile(interaction.user.id)
     for friend_code in friend_codes:
         options.append(SelectOption(label=friend_code[0], description=friend_code[1]))
@@ -386,7 +386,7 @@ async def edit_code_func(modal, interaction):
                     new_fc[1] = modal.children[1].placeholder
                 try:
                     user_friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-                except KeyError:
+                except (KeyError, FileNotFoundError):
                     user_friend_codes = check_profile(interaction.user.id)
                 user_friend_codes.remove([modal.children[0].placeholder, modal.children[1].placeholder])
                 user_friend_codes.append(new_fc)
@@ -401,7 +401,7 @@ async def edit_code_func(modal, interaction):
 async def edit_friend_code_function(select, interaction, ctx):
     try:
         friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-    except KeyError:
+    except (KeyError, FileNotFoundError):
         friend_codes = check_profile(interaction.user.id)
     for friend_code in friend_codes:
         if friend_code[0] == select.values[0]:
@@ -418,7 +418,7 @@ async def edit_friend_code_function(select, interaction, ctx):
 async def delete_friend_code_function(select, interaction, ctx):
     try:
         user_friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-    except KeyError:
+    except (KeyError, FileNotFoundError):
         user_friend_codes = check_profile(interaction.user.id)
     for friend_code in user_friend_codes:
         if friend_code[0] == select.values[0]:

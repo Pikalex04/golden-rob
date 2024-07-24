@@ -4,6 +4,8 @@ grobDB/ppDB/*/*
 !grobDB/ppDB/*/.gitkeep
 grobDB/users/*
 !grobDB/users/.gitkeep
+grobDB/wifiDB/*/*
+!grobDB/wifiDB/*/.gitkeep
 test/
 
 # Golden ROB-specific

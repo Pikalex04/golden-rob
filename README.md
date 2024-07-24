@@ -27,8 +27,9 @@ The bot provides a help command for any of these functions. Check that out for m
 
 ## Roadmap
 
-- [ ] Getting the bot verified.
+- [x] Getting the bot verified.
 - [ ] Using only (or mostly, just when convenient) SQL databases.
+- [ ] Add option to remove Social Media or Rankings links.
 
 ## Contributing
 
@@ -45,6 +46,7 @@ This project is licensed under the GNU License - see the LICENSE file for detail
 
 * Pikalex04, main author.
 * SpoinKoza, for maintaining the accuracy of the Players' Page database and helping with some functions.
+* NumeroFox, for providing very valuable information in the making of the error codes database.
 * Mario Kart DS Network, for their initial usage of the bot and their lovely suggestions.
 
 ## Contact us

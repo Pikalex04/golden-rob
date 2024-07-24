@@ -1,838 +1,1024 @@
 {
-  "20100": [
-    [
-      "Description",
-      "The DNSs you are using are wrong."
-    ],
-    [
-      "Fix",
-      "You can check all the available DNSs with `s!dns`. We recommended to use the server called `Wiimmfi`, because it is the most popular. `Wiimmfi 2`, even though having a different DNS, still connects to the same server, meaning you will find the same people who are using the `Wiimmfi` DNSs. Some people have noticed that they can connect successfully using the `Wiimmfi 2` DNSs but not to the `Wiimmfi` DNSs, so it might be worth checking that out if the main `Wiimmfi` DNSs do not work for you."
+  "20100": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "description": "Can't connect to the internet.",
+    "fixes": [
+      [
+        null,
+        "Restart your DS and/or check IP, Netmask, DNS, Gateway and Router. You can check all the available DNSs with `/dns`. We recommended to use the server called `Wiimmfi`, because it is the most popular. `Wiimmfi 2`, even though having a different DNS, still connects to the same server, meaning you will find the same people who are using the `Wiimmfi` DNSs. Some people have noticed that they can connect successfully using the `Wiimmfi 2` DNSs but not to the `Wiimmfi` DNSs, so it might be worth checking that out if the main `Wiimmfi` DNSs do not work for you."
+      ]
     ]
-  ],
-  "20102": [
-    [
-      "Description",
-      "Your WFC profile is banned from Wiimmfi."
-    ],
-    [
-      "Fix 1 (recommended)",
-      "To circumvent the ban you need to create a new profile. Follow these 2 steps to do so:\n1. Load a game and enter the Wi-Fi Configuration Panel.\n2. Go to `Options` and  select `Erase Nintendo WFC Configuration`."
-    ],
-    [
-      "Fix 2 (unrecommended, Emulator only)",
-      "Replace the Nintendo DS BIOS and Firmware files you are using. If you want to dump the one from your Nintendo DS, run this program on a flashcart (http://kuribo64.net/get.php?id=TWCJjwloQLCYy3Zh). If you want to dump your own from a Nintendo DSi, use this program instead (http://melonds.kuribo64.net/downloads/dsibiosdumper.7z)."
-    ],
-    [
-      "Fix 3 (unrecommended, might not work)",
-      "Create a new save file or use another one."
+  },
+  "20102": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "description": "Your WFC profile is banned from Wiimmfi.",
+    "fixes": [
+      [
+        "Fix 1 (recommended)",
+        "To circumvent the ban you need to create a new profile. Follow these 2 steps to do so:\n1. Load a game and enter the Wi-Fi Configuration Panel.\n2. Go to `Options` and  select `Erase Nintendo WFC Configuration`."
+      ],
+      [
+        "Fix 2 (unrecommended, Emulator only)",
+        "Replace the Nintendo DS BIOS and Firmware files you are using. If you want to dump the one from your Nintendo DS, run this program on a flashcart (http://kuribo64.net/get.php?id=TWCJjwloQLCYy3Zh). If you want to dump your own from a Nintendo DSi, use this program instead (http://melonds.kuribo64.net/downloads/dsibiosdumper.7z)."
+      ],
+      [
+        "Fix 3 (unrecommended, might not work)",
+        "Create a new save file or use another one. On real cartridges, erase your saved data."
+      ]
     ]
-  ],
-  "20110": [
-    [
-      "Description",
-      "Your Network does not support custom DNSs."
-    ],
-    [
-      "Fix 1 (recommended)",
-      "Try setting the Secondary DNS to the Primary DNS of the server you are using and do not change the Primary DNS."
-    ],
-    [
-      "Fix 2 (TWiLight Menu++, Flashcart or Emulator only)",
-      "In case Fix 1 does not work, follow these two steps:\n1. Patch your Mario Kart DS ROM with the WFC Patcher (https://github.com/AdmiralCurtiss/WfcPatcher/releases/tag/v1.6).\n2. Set `95.217.77.151` as both Primary DNS and Secondary DNS."
+  },
+  "20110": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "description": "Your Network does not support custom DNSs.",
+    "fixes": [
+      [
+        "Fix 1 (recommended)",
+        "Try setting the Secondary DNS to the Primary DNS of the server you are using and do not change the Primary DNS."
+      ],
+      [
+        "Fix 2 (TWiLight Menu++, Flashcart or Emulator only)",
+        "In case Fix 1 does not work, follow these two steps:\n1. Patch your Mario Kart DS ROM with the WFC Patcher (https://github.com/AdmiralCurtiss/WfcPatcher/releases/tag/v1.6).\n2. Set `95.217.77.151` as both Primary DNS and Secondary DNS."
+      ],
+      [
+        "Fix 3 (TWiLight Menu++, Flashcart or Emulator only)",
+        "In case Fix 1 and 2 does not work, follow these two steps:\n1. Patch your Mario Kart DS ROM with the WFC Patcher (https://github.com/AdmiralCurtiss/WfcPatcher/releases/tag/v1.6).\n2. with `wfcpatcher --domain wiimmfi.de MarioKartDS.nds`. This patches the URL strings from *.nintendowifi.net to *.wiimmfi.de. No DNS required anymore."
+      ]
     ]
-  ],
-  "23000": [
-    [
-      "Description",
-      "naswii login"
-    ],
-    [
-      "Fix",
-      "todo"
+  },
+  "23000": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "section": "23xxx: NAS returned HTTP status code xxx during login.",
+    "description": "Your Network does not support custom DNSs.",
+    "fixes": [
+      [
+        null,
+        "No info about the fix yet."
+      ]
     ]
-  ],
-  "23400": [
-    [
-      "Description",
-      "Your ROM is not patched correctly (if you are not using a patched ROM your ROM might be corrupted; if you are using an original cartridge then the cause of this is unknown)."
-    ],
-    [
-      "Fix",
-      "Make sure you are using a fresh dump of the game and that you have patched a ROM that is not trimmed or corrputed."
+  },
+  "23400": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "section": "23xxx: NAS returned HTTP status code xxx during login.",
+    "group": "234xx: HTTP status code for a \"client error\".",
+    "description": "The server cannot or will not process the request due to an apparent client error. Your ROM is not patched correctly (if you are not using a patched ROM your ROM might be corrupted; if you are using an original cartridge then the cause of this is unknown).",
+    "fixes": [
+      [
+        null,
+        "Make sure you are using a fresh dump of the game and that you have patched a ROM that is not trimmed or corrupted."
+      ]
     ]
-  ],
-  "23912": [
-    [
-      "Description",
-      "Your WFC profile is banned permanently from Wiimmfi."
-    ],
-    [
-      "Fix 1 (recommended)",
-      "To circumvent the ban you need to create a new profile. Follow these 2 steps to do so:\n1. Load a game and enter the Wi-Fi Configuration Panel.\n2. Go to `Options` and  select `Erase Nintendo WFC Configuration`."
-    ],
-    [
-      "Fix 2 (unrecommended, Emulator only)",
-      "Replace the Nintendo DS BIOS and Firmware files you are using. If you want to dump the one from your Nintendo DS, run this program on a flashcart (http://kuribo64.net/get.php?id=TWCJjwloQLCYy3Zh). If you want to dump your own from a Nintendo DSi, use this program instead (http://melonds.kuribo64.net/downloads/dsibiosdumper.7z)."
-    ],
-    [
-      "Fix 3 (unrecommended, might not work)",
-      "Create a new save file or use another one."
+  },
+  "23912": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "section": "23xxx: NAS returned HTTP status code xxx during login.",
+    "description": "Your WFC profile is banned permanently from Wiimmfi.",
+    "fixes": [
+      [
+        "Fix 1 (recommended)",
+        "To circumvent the ban you need to create a new profile. Follow these 2 steps to do so:\n1. Load a game and enter the Wi-Fi Configuration Panel.\n2. Go to `Options` and  select `Erase Nintendo WFC Configuration`."
+      ],
+      [
+        "Fix 2 (unrecommended, Emulator only)",
+        "Replace the Nintendo DS BIOS and Firmware files you are using. If you want to dump the one from your Nintendo DS, run this program on a flashcart (http://kuribo64.net/get.php?id=TWCJjwloQLCYy3Zh). If you want to dump your own from a Nintendo DSi, use this program instead (http://melonds.kuribo64.net/downloads/dsibiosdumper.7z)."
+      ],
+      [
+        "Fix 3 (unrecommended, might not work)",
+        "Create a new save file or use another one."
+      ]
     ]
-  ],
-  "23917": [
-    [
-      "Description",
-      "Your WFC profile is temporarily banned from Wiimmfi."
-    ],
-    [
-      "Fix 1 (recommended)",
-      "To circumvent the ban you need to create a new profile. Follow these 2 steps to do so:\n1. Load a game and enter the Wi-Fi Configuration Panel.\n2. Go to `Options` and  select `Erase Nintendo WFC Configuration`."
-    ],
-    [
-      "Fix 2 (unrecommended, Emulator only)",
-      "Replace the Nintendo DS BIOS and Firmware files you are using. If you want to dump the one from your Nintendo DS, run this program on a flashcart (http://kuribo64.net/get.php?id=TWCJjwloQLCYy3Zh). If you want to dump your own from a Nintendo DSi, use this program instead (http://melonds.kuribo64.net/downloads/dsibiosdumper.7z)."
-    ],
-    [
-      "Fix 3 (unrecommended, might not work)",
-      "Create a new save file or use another one."
-    ],
-    [
-      "Fix 4 (unrecommended, might not work)",
-      "Wait for the ban to expire. Some bans do not show up in the Wiimmfi Bans List (which means the expiration date is unknown) so we highly recommend to use the Fix 1 as it is simple, straight-forward and does not delete the progress in your save file."
+  },
+  "23917": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "section": "23xxx: NAS returned HTTP status code xxx during login.",
+    "description": "Your WFC profile is temporarily banned from Wiimmfi.",
+    "fixes": [
+      [
+        "Fix 1 (recommended)",
+        "To circumvent the ban you need to create a new profile. Follow these 2 steps to do so:\n1. Load a game and enter the Wi-Fi Configuration Panel.\n2. Go to `Options` and  select `Erase Nintendo WFC Configuration`."
+      ],
+      [
+        "Fix 2 (unrecommended, Emulator only)",
+        "Replace the Nintendo DS BIOS and Firmware files you are using. If you want to dump the one from your Nintendo DS, run this program on a flashcart (http://kuribo64.net/get.php?id=TWCJjwloQLCYy3Zh). If you want to dump your own from a Nintendo DSi, use this program instead (http://melonds.kuribo64.net/downloads/dsibiosdumper.7z)."
+      ],
+      [
+        "Fix 3 (unrecommended, might not work)",
+        "Create a new save file or use another one."
+      ],
+      [
+        "Fix 4 (unrecommended, might not work)",
+        "Wait for the ban to expire. Some bans do not show up in the Wiimmfi Bans List (which means the expiration date is unknown) so we highly recommend to use the Fix 1 as it is simple, straight-forward and does not delete the progress in your save file."
+      ]
     ]
-  ],
-  "23922": [
-    [
-      "Description",
-      "This game is not supported by Wiimmfi."
+  },
+  "23922": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "section": "23xxx: NAS returned HTTP status code xxx during login.",
+    "description": "This game is not supported by Wiimmfi."
+  },
+  "23923": {
+    "class": "2xxxx: NAS (login server) error codes.",
+    "section": "23xxx: NAS returned HTTP status code xxx during login.",
+    "description": "This game is known by Wiimmfi but disabled, meaning it is not supported."
+  },
+  "42069": {
+    "description": "You tried to be funny but failed.",
+    "fixes": [
+      [
+        null,
+        "Touch grass."
+      ]
     ]
-  ],
-  "23923": [
-    [
-      "Description",
-      "This game is known by Wiimmfi but disabled, meaning it is not supported."
+  },
+  "50000": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: no interface defined or Connection 1 Settings.",
+    "section": "5xx00: Unknown interface or Connection 1 Settings.",
+    "group": "500yy: AP not found.",
+    "description": "Your console cannot find your Network or any Network at all.",
+    "fixes": [
+      [
+        "Fix 1",
+        "Even though this might sound stupid, make sure the settings of your connections are actually saved. This error can also happen when there are no connections saved at all somehow, so might be useful to point this out."
+      ],
+      [
+        "Fix 2",
+        "Make sure the settings you have inserted are correct and that there is no configuration set in the slots higher than the one you are using. This error also seems to occur when the Network you are trying to connect to uses a password with an unsupported encryption, like WPA or WPA2. For games that are not DSi Enhanced, please use a Network with a WEP encryption or without a password at all."
+      ]
     ]
-  ],
-  "42069": [
-    [
-      "Description",
-      "You tried to be funny and failed."
-    ],
-    [
-      "Fix",
-      "Touch grass."
+  },
+  "50099": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 99: Unknown.",
+    "section": "5xx99: Unknown interface.",
+    "group": "500yy: AP not found.",
+    "description": "Your console cannot find your Network or any Network at all.",
+    "fixes": [
+      [
+        null,
+        "Make sure the settings you have inserted are correct and that there is no configuration set in the slots higher than the one you are using. This error also seems to occur when the Network you are trying to connect to uses a password with an unsupported encryption, like WPA or WPA2. For games that are not DSi Enhanced, please use a Network with a WEP encryption or without a password at all."
+      ]
     ]
-  ],
-  "50000": [
-    [
-      "Description",
-      "Your console cannot find your Network or any Network at all."
-    ],
-    [
-      "Fix 1",
-      "Even though this might sound stupid, make sure the settings of your connections are actually saved. This error can also happen when there are no connections saved at all somehow, so might be useful to point this out."
-    ],
-    [
-      "Fix 2",
-      "Make sure the settings you have inserted are correct and that there is no configuration set in the slots higher than the one you are using. This error also seems to occur when the Network you are trying to connect to uses a password with an unsupported encryption, like WPA or WPA2. For games that are not DSi Enhanced, please use a Network with a WEP encryption or without a password at all."
+  },
+  "51099": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 99: Unknown.",
+    "section": "5xx99: Unknown interface.",
+    "group": "510yy: AP/WiFi USB Connector not found.",
+    "description": "Your console cannot find your Network.",
+    "fixes": [
+      [
+        null,
+        "Make sure the settings you have inserted are correct and that there is no configuration set in the slots higher than the one you are using. This error also seems to occur when the Network you are trying to connect to uses a password with an unsupported encryption, like WPA or WPA2. For games that are not DSi Enhanced, please use a Network with a WEP encryption or without a password at all. If you are repeating your WiFi with an Android Phone, make sure it uses 2.4 GHz frequency."
+      ]
     ]
-  ],
-  "50099": [
-    [
-      "Description",
-      "Your console cannot find your Network."
-    ],
-    [
-      "Fix",
-      "Make sure the settings you have inserted are correct and that there is no configuration set in the slots higher than the one you are using. This error also seems to occur when the Network you are trying to connect to uses a password with an unsupported encryption, like WPA or WPA2. For games that are not DSi Enhanced, please use a Network with a WEP encryption or without a password at all."
+  },
+  "51100": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00:no interface defined or Connection 1 Settings.",
+    "section": "5xx00: Unknown interface or Connection 1 Settings.",
+    "group": "511yy: Try another WLAN channel (too much noise) or WEP key is wrong.",
+    "description": "The WEP key you have set is incorrect or on your WLAN channel has too much noise.",
+    "fixes": [
+      [
+        null,
+        "Try to use a different WLAN channel between 1-9 and/or check that the WEP key is the same as the on your router. WEP keys are hexadecimal (0-9, A-F) and are either 10 (64-bit) or 26 (128-bit) digits long. PSK-WEP keys are not supported."
+      ]
     ]
-  ],
-  "51099": [
-    [
-      "Description",
-      "Your console cannot find your Network."
-    ],
-    [
-      "Fix",
-      "Make sure the settings you have inserted are correct and that there is no configuration set in the slots higher than the one you are using. This error also seems to occur when the Network you are trying to connect to uses a password with an unsupported encryption, like WPA or WPA2. For games that are not DSi Enhanced, please use a Network with a WEP encryption or without a password at all."
+  },
+  "51101": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
+    "section": "5xx01: Connection 2 Settings.",
+    "group": "511yy: Try another WLAN channel (too much noise) or WEP key is wrong.",
+    "description": "The WEP key you have set is incorrect or on your WLAN channel has too much noise.",
+    "fixes": [
+      [
+        null,
+        "Try to use a different WLAN channel between 1-9 and/or check that the WEP key is the same as the on your router. WEP keys are hexadecimal (0-9, A-F) and are either 10 (64-bit) or 26 (128-bit) digits long. PSK-WEP keys are not supported."
+      ]
     ]
-  ],
-  "51100": [
-    [
-      "Description",
-      "used wlan channel too clogged"
-    ],
-    [
-      "Fix",
-      "change channel"
+  },
+  "51102": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 3 Settings.",
+    "section": "5xx02: Connection 3 Settings.",
+    "group": "511yy: Try another WLAN channel (too much noise) or WEP key is wrong.",
+    "description": "The WEP key you have set is incorrect or on your WLAN channel has too much noise.",
+    "fixes": [
+      [
+        null,
+        "Try to use a different WLAN channel between 1-9 and/or check that the WEP key is the same as the on your router. WEP keys are hexadecimal (0-9, A-F) and are either 10 (64-bit) or 26 (128-bit) digits long. PSK-WEP keys are not supported."
+      ]
     ]
-  ],
-  "51300": [
-    [
-      "Description",
-      "Your connection is overlapping with other channels in your Network."
-    ],
-    [
-      "Fix 1 (Router and some Mobile Hotspots only)",
-      "Change the channel of your Network to 1 or 11. If other devices are connected to the same Network, please connect these devices to the 5Ghz Network and leave your console connected to the 2.4Ghz Network."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \"fixes itself\"."
+  },
+  "51300": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: no interface defined or Connection 1 Settings.",
+    "section": "5xx00: Unknown interface or Connection 1 Settings.",
+    "group": "513yy: WLAN connection to access point failed.",
+    "description": "Your connection is overlapping with other channels in your Network or your router is blocking the MAC address of your DS.",
+    "fixes": [
+      [
+        "Fix 1 (Router and some Mobile Hotspots only)",
+        "Change the channel of your Network to 1 or 11. If other devices are connected to the same Network, please connect these devices to the 5Ghz Network and leave your console connected to the 2.4 GHz Network."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \\\"fixes itself\\\"."
+      ],
+      [
+        "Fix 3",
+        "Check if your router/hotspot is blocking the MAC adddress of your DS."
+      ]
     ]
-  ],
-  "51301": [
-    [
-      "Description",
-      "Your connection is overlapping with other channels in your Network."
-    ],
-    [
-      "Fix 1 (Router and some Mobile Hotspots only)",
-      "Change the channel of your Network to 1 or 11. If other devices are connected to the same Network, please connect these devices to the 5Ghz Network and leave your console connected to the 2.4Ghz Network."
+  },
+  "51301": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
+    "section": "5xx01: Connection 2 Settings.",
+    "group": "513yy: WLAN connection to access point failed.",
+    "description": "Your connection is overlapping with other channels in your Network or your router is blocking the MAC address of your DS.",
+    "fixes": [
+      [
+        "Fix 1 (Router and some Mobile Hotspots only)",
+        "Change the channel of your Network to 1 or 11. If other devices are connected to the same Network, please connect these devices to the 5Ghz Network and leave your console connected to the 2.4 GHz Network."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \\\"fixes itself\\\"."
+      ],
+      [
+        "Fix 3",
+        "Check if your router/hotspot is blocking the MAC adddress of your DS."
+      ]
     ]
-  ],
-  "51302": [
-    [
-      "Description",
-      "Your connection is overlapping with other channels in your Network."
-    ],
-    [
-      "Fix 1 (Router and some Mobile Hotspots only)",
-      "Change the channel of your Network to 1 or 11. If other devices are connected to the same Network, please connect these devices to the 5Ghz Network and leave your console connected to the 2.4Ghz Network."
+  },
+  "51302": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings.",
+    "section": "5xx02: Connection 3 Settings.",
+    "group": "513yy: WLAN connection to access point failed.",
+    "description": "Your connection is overlapping with other channels in your Network or your router is blocking the MAC address of your DS.",
+    "fixes": [
+      [
+        "Fix 1 (Router and some Mobile Hotspots only)",
+        "Change the channel of your Network to 1 or 11. If other devices are connected to the same Network, please connect these devices to the 5Ghz Network and leave your console connected to the 2.4 GHz Network."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \\\"fixes itself\\\"."
+      ],
+      [
+        "Fix 3",
+        "Check if your router/hotspot is blocking the MAC adddress of your DS."
+      ]
     ]
-  ],
-  "52000": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52000": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: no interface defined or Connection 1 Settings",
+    "section": "5xx02: Unknown interface or Connection 1 Settings.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52001": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52001": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings",
+    "section": "5xx02: Connection 2 Settings.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52002": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52002": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings",
+    "section": "5xx02: Connection 3 Settings.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52003": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52003": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 03: Unknown.",
+    "section": "5xx03: Unknown interface.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52004": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52004": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 04: Unknown.",
+    "section": "5xx04: Unknown interface.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52005": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52005": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 05: Unknown.",
+    "section": "5xx05: Unknown interface.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52006": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52006": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 06: Unknown.",
+    "section": "5xx06: Unknown interface.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52007": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52007": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 07: Unknown.",
+    "section": "5xx07: Unknown interface.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52008": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52008": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 08: Unknown.",
+    "section": "5xx08: Unknown interface.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52009": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52009": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 09: Unknown.",
+    "section": "5xx09: Unknown interface.",
+    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
+    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "fixes": [
+      [
+        "Fix 1 (Wiimmfi server-only, might not work)",
+        "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2 (unrecommended, might not work)",
+        "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
+      ],
+      [
+        "Fix 3 (requires a PC)",
+        "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
+      ],
+      [
+        "Fix 4 (requires Fix 3 to be done first)",
+        "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
+      ],
+      [
+        "Fix 5 (requires Fix 3 and 4 to be done first)",
+        "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+      ],
+      [
+        "Fix 6",
+        "Your DHCP server could not be reached. DHCP server (and/or firewall) is configured to allow only specific devices (by MAC address), and this DS is not known on this network yet. Or DHCP server not enabled/running in the first place. Manual configuration will work, but only if you know settings that should work."
+      ]
     ]
-  ],
-  "52100": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52100": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: No interface defined or Connection 1 Setting.",
+    "section": "5xx00: Unknown interface or Connection 1 Settings.",
+    "group": "521yy: DNS failed or connection to the WLAN.",
+    "description": "Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
+    "fixes": [
+      [
+        "Fix 1",
+        "Check if your DNS is correct. If so, you should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2",
+        "The data transmission rate of your router is too fast. Make sure to use 802.11b connectivity (sometimes called legacy mode or up to 11 Mbps). The DS system only supports that."
+      ]
     ]
-  ],
-  "52101": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52101": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
+    "section": "5xx01: Connection 2 Settings.",
+    "group": "521yy: DNS failed or connection to the WLAN.",
+    "description": "Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
+    "fixes": [
+      [
+        "Fix 1",
+        "Check if your DNS is correct. If so, you should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2",
+        "The data transmission rate of your router is too fast. Make sure to use 802.11b connectivity (sometimes called legacy mode or up to 11 Mbps). The DS system only supports that."
+      ]
     ]
-  ],
-  "52102": [
-    [
-      "Description",
-      "Your DS cannot connect to Wiimmfi. The exact cause is not known, however it is known it is related to your Network."
-    ],
-    [
-      "Fix 1 (Wiimmfi server-only, might not work)",
-      "You should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
-    ],
-    [
-      "Fix 2 (unrecommended, might not work)",
-      "It has been noted this error can \"fix itself\" with time, so you might want to wait a bit and try again in another moment."
-    ],
-    [
-      "Fix 2 (requires a PC)",
-      "Follow these steps (they use Windows but this should be possible in other OSs too):\n1. Connect your PC to the network you are using for your console.\n2. Go to the `Control Panel` and enter `Network and Internet` > `Network and Sharing Center`.\n3. From the list of connections, select the one of the Network you are using for your console.\n4. Click on `Details`, find the IPv4 Address, Subnet Mask and Gateway of the Network and insert them in the connection settings in your console."
-    ],
-    [
-      "Fix 3 (requires Fix 2 to be done first)",
-      "If Fix 2 still does not solve the issue, try setting the IP Address 10 digits higher (for example, `192.168.0.100` becomes `192.168.0.110`)."
-    ],
-    [
-      "Fix 4 (requires Fix 2 and 3 to be done first)",
-      "If not even Fix 3 fixes the error, it might be that your Network does not support Custom DNSs. Use `s!error 20110` and follow the same exact procedure that is said in the Fix 2 to ultimately fix this problem."
+  },
+  "52102": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings.",
+    "section": "5xx01: Connection 3 Settings.",
+    "group": "521yy: DNS failed or connection to the WLAN.",
+    "description": "Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
+    "fixes": [
+      [
+        "Fix 1",
+        "Check if your DNS is correct. If so, you should be able to fix this error by using `178.62.43.212` as Primary DNS and `1.1.1.1` (this will connect you to the `Wiimmfi 2` servers, where you can still find players using the normal DNSs and the `Wiimmfi` server)."
+      ],
+      [
+        "Fix 2",
+        "The data transmission rate of your router is too fast. Make sure to use 802.11b connectivity (sometimes called legacy mode or up to 11 Mbps). The DS system only supports that."
+      ]
     ]
-  ],
-  "52200": [
-    [
-      "Description",
-      "The connection to the servers failed."
-    ],
-    [
-      "Fix",
-      "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports."
+  },
+  "52200": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: No interface defined or Connection 1 Setting.",
+    "section": "5xx00: Unknown interface or Connection 1 Settings.",
+    "group": "522yy: Connection test failed. conntest.nintendowifi.net or conntest.wiimmfi.de is unreachable.",
+    "description": "The connection to the servers failed.",
+    "fixes": [
+      [
+        null,
+        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device. Usually no Internet interface defined."
+      ]
     ]
-  ],
-  "52201": [
-    [
-      "Description",
-      "The connection to the servers failed."
-    ],
-    [
-      "Fix",
-      "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports."
+  },
+  "52201": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
+    "section": "5xx01: Connection 2 Settings.",
+    "group": "522yy: Connection test failed. conntest.nintendowifi.net or conntest.wiimmfi.de is unreachable.",
+    "description": "The connection to the servers failed.",
+    "fixes": [
+      [
+        null,
+        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device. Usually no Internet interface defined."
+      ]
     ]
-  ],
-  "60000": [
-    [
-      "Description",
-      "A Friend Roaster with friends saved with another server is being used."
-    ],
-    [
-      "Fix",
-      "Go to the Friends Roaster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
+  },
+  "52202": {
+    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings.",
+    "section": "5xx02: Connection 3 Settings.",
+    "group": "522yy: Connection test failed. conntest.nintendowifi.net or conntest.wiimmfi.de is unreachable.",
+    "description": "The connection to the servers failed.",
+    "fixes": [
+      [
+        null,
+        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device. Usually no Internet interface defined."
+      ]
     ]
-  ],
-  "61010": [
-    [
-      "Description",
-      "could not login to server"
-    ],
-    [
-      "Fix",
-      "servers might be under maintenance"
+  },
+  "60000": {
+    "class": "6xyyz: Server error during login.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "A Friend Roaster with friends saved with another server is being used.",
+    "fixes": [
+      [
+        null,
+        "Go to the Friends Roaster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
+      ]
     ]
-  ],
-  "61020": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "61010": {
+    "class": "6xyyz: Server error during login.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "Server error during login.",
+    "fixes": [
+      [
+        null,
+        "If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "61070": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "61020": {
+    "class": "6xyyz: Server error during login.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "61102": [
-    [
-      "Description",
-      "Your DS could not connect to Wiimmfi for unknown reasons."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "61070": {
+    "class": "6xyyz: Server error during login.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy2: Parameter error.",
+    "description": "Timeout occurred while connecting the GPSP server of Wiimmfi.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check if your connection has packet losses."
+      ]
     ]
-  ],
-  "69420": [
-    [
-      "Description",
-      "You tried to be funny and failed."
-    ],
-    [
-      "Fix",
-      "Touch grass."
+  },
+  "61102": {
+    "class": "6xyyz: Server error during login.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy2: Parameter error.\ncx10z: Max connections to your router exceeded.",
+    "description": "Your router has reached the maximum connections.",
+    "fixes": [
+      [
+        null,
+        "Try to disconnect some other devices or restart your router."
+      ]
     ]
-  ],
-  "71010": [
-    [
-      "Description",
-      "A Friend Roaster with friends saved with another server is being used."
-    ],
-    [
-      "Fix",
-      "Go to the Friends Roaster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
+  },
+  "69420": {
+    "description": "You tried to be funny but failed.",
+    "fixes": [
+      [
+        null,
+        "Touch grass."
+      ]
     ]
-  ],
-  "71020": [
-    [
-      "Description",
-      "server error during friend mgmt"
-    ],
-    [
-      "Fix",
-      "todo"
+  },
+  "71010": {
+    "class": "7xyyz: Server error during friend management.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "A Friend Roaster with friends saved with another server is being used.",
+    "fixes": [
+      [
+        null,
+        "Go to the Friends Roaster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
+      ]
     ]
-  ],
-  "81010": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "71020": {
+    "class": "7xyyz: Server error during friend management.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.\ncx02z: GameSpy server failure.",
+    "description": "A Friend Roaster with friends saved with another server is being used.",
+    "fixes": [
+      [
+        null,
+        "Go to the Friends Roaster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
+      ]
     ]
-  ],
-  "82020": [
-    [
-      "Description",
-      "gamestats error"
-    ],
-    [
-      "Fix",
-      "todo"
+  },
+  "81010": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "Disconnect from or by GPCM server, GPCM sent an error message or suddenly lost internet connection.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. Occasionally a result of a kick or ban. Try again if not a ban."
+      ]
     ]
-  ],
-  "84020": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "82010": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "Disconnect from or by GPCM server, GPCM sent an error message or suddenly lost internet connection.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. Occasionally a result of a kick or ban. Try again if not a ban."
+      ]
     ]
-  ],
-  "84060": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "82020": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c2yyz: Persistent error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "MASTER Server of Wiimmfi down or UDP packets are being blocked in your network.",
+    "fixes": [
+      [
+        null,
+        "The error code is too unknown to provide fixes."
+      ]
     ]
-  ],
-  "85010": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "84020": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c4yyz: QR2 error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "MASTER Server of Wiimmfi down or UDP packets are being blocked in your network.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down and check if your network is blocking UDP traffic."
+      ]
     ]
-  ],
-  "85020": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "84060": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c4yyz: QR2 error.",
+    "group": "cxyy0: Error is not fatal.\ncx06z: Socket bind error.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason and it's usually a temporary problem.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "85030": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "85010": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c5yyz: ServerBrowser error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "Matchmaking retrieving server is down. MS is used by the clients to search for hosts for matchmaking.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "86020": [
-    [
-      "Description",
-      "natneg down"
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "85020": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c5yyz: ServerBrowser error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "While online, each client (game) sends a UDP/IP packet with the current online status to the MASTER approximately every 30–60sec. This data is stored in a game specific database table for matchmaking, which can be retrieved by the MS server.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. This usually indicates no one else is searching or the handshake process is interfered. Try to port forward 28910, 29900, 29901 and 29920 (TCP)."
+      ]
     ]
-  ],
-  "86420": [
-    [
-      "Description",
-      "Your Network cannot establish P2P connections as host or as both host and guest. Be ready for some headaches, because it is very tedious to fix. It also cannot be fixed from a Mobile Hotspot, unless you have access to Port Forwarding which is not accessible for 99% of the phones."
-    ],
-    [
-      "Fix 1 (recommended, emulator-only)",
-      "Check the Firewall of your OS and make sure your PC is not blocking the connection to the server you are using."
-    ],
-    [
-      "Fix 2 (recommended, safe and router-only, requires Fix 1 to be done first if using an emulator)",
-      "Access the settings of your router (you might need to check Advanced Settings too) and make sure your Firewall is not blocking the connection to Wiimmfi."
-    ],
-    [
-      "Fix 3 (recommended, safe and router-only, requires Fix 2 to be done first)",
-      "Access the settings of your router (you might need to check Advanced Settings too). The procedure depends by router and router, so I will try to use common terms and synonyms when possible. First of all disable uPnP and make sure NAT is enabled. Then, look for a Port Forwarding, NAT or PAT option, which should prompt a table (if there is something that disables this table, please enable it). Add a new value (a port) to the table: enter `1024` for internal port and `65535` for external port, and for the type of port select `TCP&UPD`, if not present, just `UPD`. Make another port and follow the same procedure, just switch `1024` for external port and `65535` for internal port.\n\nThis should fix the problem, but you might want to whitelist your console to this rule (through Static IP Address or MAC) for security reasons."
-    ],
-    [
-      "Fix 4 (unsafe and router-only, requires Fix 1 to be done first if using en emulator)",
-      "Access the settings of your router (you might need to check Advanced Settings too) and turn on DMZ. This is not a very safe thing to do, but if you are using the router only for your console, then you should be fine."
-    ],
-    [
-      "Further help",
-      "This error is explained very well in this guide, so if something is not clear, try giving it a read: https://docs.google.com/document/d/1f3PChwQig40UaiPXlh-Gi5CggGiBPzyrpiecLZlT8ZE/edit?usp=sharing."
+  },
+  "85030": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c5yyz: ServerBrowser error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It can be the DNS didn't respond in time for the console.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "87001": [
-    [
-      "Description",
-      "Congratulations! This is a very rare error that only very few people got! And not even Wiimmfi devs know what causes this so if you constantly get it, good luck finding a fix!"
-    ],
-    [
-      "Fix",
-      "Jokes apart, the fact it is a rare error and the cause is unknown is true, so try to refresh your Network by restarting it, try to restart your console, make sure all of the settings are correct, make sure your Friend Roaster is empty, etc.."
+  },
+  "86020": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c6yyz: NATNEG error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "The name NATNEG is a combination of NAT (Network Address Translation) and NEG (NEGotiation). When playing with other players, the clients (games) must create a client-to-client connection to exchange game data. Because of firewalls and network address translations (NAT) a server must be used to open the gates. And this server is NATNEG.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "91000": [
-    [
-      "Description",
-      "gpcm error"
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "86030": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c6yyz: NATNEG error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "The DNS server you use doesn't know what to reply to *.natneg.wiimmfi.de.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down or try another DNS server."
+      ]
     ]
-  ],
-  "91010": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "86420": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c6yyz: NATNEG error.",
+    "group": "cxyy0: Error is not fatal.\ncx42z: NATNEG has failed too many times. General error during NATNEG (connection to other players).",
+    "description": "Your Network cannot establish P2P (peer-to-peer) connections as host or as both host and guest. Be ready for some headaches, because it is very tedious to fix. It also cannot be fixed from a Mobile Hotspot, unless you have access to Port Forwarding which is not accessible for 99% of the phones.",
+    "fixes": [
+      [
+        "Fix 1 (recommended, emulator-only)",
+        "Check the Firewall of your OS and make sure your PC is not blocking the connection to the server you are using."
+      ],
+      [
+        "Fix 2 (recommended, safe and router-only, requires Fix 1 to be done first if using an emulator)",
+        "Access the settings of your router (you might need to check Advanced Settings too) and make sure your Firewall is not blocking the connection to Wiimmfi."
+      ],
+      [
+        "Fix 3 (recommended, safe and router-only, requires Fix 2 to be done first)",
+        "Access the settings of your router (you might need to check Advanced Settings too). The procedure depends by router and router, so I will try to use common terms and synonyms when possible. First of all disable uPnP and make sure NAT is enabled. Then, look for a Port Forwarding, NAT or PAT option, which should prompt a table (if there is something that disables this table, please enable it). Add a new value (a port) to the table: enter `1024` for internal port and `65535` for external port, and for the type of port select `TCP&UPD`, if not present, just `UPD`. Make another port and follow the same procedure, just switch `1024` for external port and `65535` for internal port.\n\nThis should fix the problem, but you might want to whitelist your console to this rule (through Static IP Address or MAC) for security reasons."
+      ],
+      [
+        "Fix 4 (unsafe and router-only, requires Fix 1 to be done first if using en emulator)",
+        "Access the settings of your router (you might need to check Advanced Settings too) and turn on DMZ. This is not a very safe thing to do, but if you are using the router only for your console, then you should be fine."
+      ],
+      [
+        "Fix 5",
+        "Make sure you are not using a NATted connection. Check if your WAN IP starts with 10.x or a 100.x IP. This usually indicates a NAT which blocks inbound connections. The P2P circle can't be closed and results in this error. Contact your ISP to assign a public IP and try again. This can be also fixed if your other player has put their console into the DMZ so the P2P connection can be built up anyways."
+      ],
+      [
+        "Further help",
+        "This error is explained very well in this guide, so if something is not clear, try giving it a read: https://docs.google.com/document/d/1f3PChwQig40UaiPXlh-Gi5CggGiBPzyrpiecLZlT8ZE/edit?usp=sharing."
+      ]
     ]
-  ],
-  "91020": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "87001": {
+    "class": "8xyyz: Server error during matchmaking.",
+    "section": "c7yyz: GT2 error.",
+    "group": "cxyy1: Memory allocation failure.",
+    "description": "Congratulations! This is a very rare error that only very few people got! And not even Wiimmfi devs know what causes this so if you constantly get it, good luck finding a fix!",
+    "fixes": [
+      [
+        null,
+        "Jokes apart, the fact it is a rare error and the cause is unknown is true, so try to refresh your Network by restarting it, try to restart your console, make sure all of the settings are correct, make sure your Friend Roaster is empty, etc.."
+      ]
     ]
-  ],
-  "91070": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "91000": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "GPCM error",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "91420": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "91010": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.\ncx02z: GameSpy server failure.",
+    "description": "Disconnect from or by GPCM server, GPCM sent an error message or suddenly lost internet connection.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. Occasionally a result of a kick or ban. Try again if not a ban."
+      ]
     ]
-  ],
-  "94020": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "91020": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.\ncx02z: GameSpy server failure.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "94030": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "91070": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.\ncx07z: Timeout occured.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ],
-  "98020": [
-    [
-      "Description",
-      "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi."
-    ],
-    [
-      "Fix",
-      "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+  },
+  "91420": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c1yyz: GP error.",
+    "group": "cxyy0: Error is not fatal.\ncx42z: NATNEG has failed too many times.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
+    "fixes": [
+      [
+        null,
+        "Restart your DS, reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
     ]
-  ]
+  },
+  "94020": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c4yyz: QR2 error.",
+    "group": "cxyy0: Error is not fatal.\ncx03z: DNS failure.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
+    "fixes": [
+      [
+        null,
+        "Restart your DS, reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
+    ]
+  },
+  "94030": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c4yyz: QR2 error.",
+    "group": "cxyy0: Error is not fatal.\ncx03z: DNS failure.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
+    ]
+  },
+  "98020": {
+    "class": "9xyyz: General server error codes.",
+    "section": "c8yyz: GHTTP error.",
+    "group": "cxyy0: Error is not fatal.",
+    "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
+    "fixes": [
+      [
+        null,
+        "Reconnect again and it should be fine. If you still get the error after 5 tries, check the status of the server you are using as it might be down."
+      ]
+    ]
+  }
 }

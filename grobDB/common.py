@@ -148,26 +148,33 @@ def make_leaderboard(page, data, pages, formatting):
     return e, hide
 
 
-async def pp_leaderboard(ctx, chart, start, formatting):
+async def pp_leaderboard(ctx, chart, start, formatting, wifi=False):
     try:
-        data = bj.json_load(chart)
-        pages = []
-        for i in range(ceil(len(data['times']) / 10)):
-            pages.append(data['times'][0 + i * 10:10 + i * 10])
         try:
-            page = ceil(int(start) / 10)
+            data = bj.json_load(chart)
         except Exception:
-            page = 1
+            if wifi:
+                await ctx.send(embed=be.error_embed(
+                    f'{ctx.author.mention}, that track is not available in Wi-Fi Strat!'))
         else:
-            if page > len(pages):
-                page = len(pages)
-            elif page < 1:
+            pages = []
+            for i in range(ceil(len(data['times']) / 10)):
+                pages.append(data['times'][0 + i * 10:10 + i * 10])
+            try:
+                page = ceil(int(start) / 10)
+            except Exception:
                 page = 1
-        e, hide = make_leaderboard(page, data, pages, formatting)
-        await ctx.send(embed=e, view=LeaderboardView(
-            hide=hide, data=data, pages=pages, page=page, formatting=formatting, ctx=ctx))
+            else:
+                if page > len(pages):
+                    page = len(pages)
+                elif page < 1:
+                    page = 1
+            e, hide = make_leaderboard(page, data, pages, formatting)
+            await ctx.send(embed=e, view=LeaderboardView(
+                hide=hide, data=data, pages=pages, page=page, formatting=formatting, ctx=ctx))
     except Exception:
-        if bj.json_load(f'grobDB/ppDB/maintenance.json')['status']:
+        db_dir = 'ppDB' if not wifi else 'wifiDB'
+        if bj.json_load(f'grobDB/{db_dir}/maintenance.json')['status']:
             await ctx.send(embed=be.error_embed(
-                f'{ctx.author.mention}, there was an error, likely due to the Players\' Page database being in '
-                'maintenance right now! Please try again later.'))
+                f'{ctx.author.mention}, there was an error, likely due to the database being in maintenance right now! '
+                'Please try again later.'))

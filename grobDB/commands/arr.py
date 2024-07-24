@@ -16,22 +16,50 @@ def run(bot):
     async def arr(ctx):
         args = ctx.message.content.lower().split()
         start = 1
-        countries = bj.json_load('grobDB/ppDB/countries.json')
-        fields = [categories, countries]
-        selection = []
-        for field in fields:
-            selection.append(field[0])
-        for arg in args:
+        if 'wifi' in args:
+            fields = []
+            selection = []
             for field in fields:
-                for values in field:
-                    if arg in values:
-                        selection[fields.index(field)] = values
-                        break
-            if arg.isdigit():
-                start = arg
+                selection.append(field[0])
+            for arg in args:
+                for field in fields:
+                    for values in field:
+                        if arg in values:
+                            selection[fields.index(field)] = values
+                            break
+                if arg.isdigit():
+                    start = arg
 
-        def formatting(e, score):
-            e.add_field(
-                name=f'[{score['rank']}] {score['country']} {score['player']}',
-                value=f'{score['cr']}{score['score']} - {score['change']}', inline=False)
-        await pp_leaderboard(ctx, f'grobDB/ppDB/arr/{selection[1][0]}{selection[0][0]}.json', start, formatting)
+            def formatting(e, score):
+                try:
+                    e.add_field(
+                        name=f'[{score['rank']}] {score['country']} {score['player']}',
+                        value=f'{score['cr']}{score['std']} ({score['score']}) - {score['participation']}/20',
+                        inline=False)
+                except KeyError:
+                    e.add_field(
+                        name=f'[{score['rank']}] {score['country']} {score['player']}',
+                        value=f'{score['std']} ({score['score']}) - {score['participation']}/20', inline=False)
+
+            await pp_leaderboard(ctx, f'grobDB/wifiDB/arr/.json', start, formatting)
+        else:
+            countries = bj.json_load('grobDB/ppDB/countries.json')
+            fields = [categories, countries]
+            selection = []
+            for field in fields:
+                selection.append(field[0])
+            for arg in args:
+                for field in fields:
+                    for values in field:
+                        if arg in values:
+                            selection[fields.index(field)] = values
+                            break
+                if arg.isdigit():
+                    start = arg
+
+            def formatting(e, score):
+                e.add_field(
+                    name=f'[{score['rank']}] {score['country']} {score['player']}',
+                    value=f'{score['cr']}{score['score']} - {score['change']}', inline=False)
+
+            await pp_leaderboard(ctx, f'grobDB/ppDB/arr/{selection[1][0]}{selection[0][0]}.json', start, formatting)

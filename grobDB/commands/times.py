@@ -28,33 +28,63 @@ def run(bot):
     async def times(ctx):
         args = ctx.message.content.lower().split()
         start = 1
-        countries = bj.json_load('grobDB/ppDB/countries.json')
-        fields = [categories, tracks, laps, countries]
-        selection = []
-        for field in fields:
-            selection.append(field[0])
-        for arg in args:
+        if 'wifi' in args:
+            fields = [tracks]
+            selection = []
             for field in fields:
-                for values in field:
-                    if arg in values:
-                        selection[fields.index(field)] = values
-                        break
-            if arg.isdigit():
-                start = arg
+                selection.append(field[0])
+            for arg in args:
+                for field in fields:
+                    for values in field:
+                        if arg in values:
+                            selection[fields.index(field)] = values
+                            break
+                if arg.isdigit():
+                    start = arg
 
-        def formatting(e, score):
-            try:
-                e.add_field(
-                    name=f'[{score['rank']}] {score['country']} {score['player']}',
-                    value=f'{score['cr']}'
-                          f'{f'[{score['time']}]({score['video']})' if score['video'] != '' else score['time']} '
-                          f'({score['std']}) - {score['date']}', inline=False)
-            except KeyError:
-                e.add_field(
-                    name=f'[{score['rank']}] {score['country']} {score['player']}',
-                    value=f'{f'[{score['time']}]({score['video']})' if score['video'] != '' else score['time']} '
-                          f'({score['std']}) - {score['date']}', inline=False)
-        await pp_leaderboard(
-            ctx, f'grobDB/ppDB/times/{selection[3][0]}{selection[0][0]}'
-                 f'{tracks.index(selection[1]) * 2 + laps.index(selection[2])}.json', start, formatting)
+            def formatting(e, score):
+                try:
+                    e.add_field(
+                        name=f'[{score['rank']}] {score['country']} {score['player']}',
+                        value=f'{score['cr']}'
+                              f'{f'[{score['time']}]({score['video']})' if score['video'] != '' else score['time']} '
+                              f'({score['std']})', inline=False)
+                except KeyError:
+                    e.add_field(
+                        name=f'[{score['rank']}] {score['country']} {score['player']}',
+                        value=f'{f'[{score['time']}]({score['video']})' if score['video'] != '' else score['time']} '
+                              f'({score['std']})', inline=False)
 
+            await pp_leaderboard(
+                ctx, f'grobDB/wifiDB/times/{tracks.index(selection[0]) * 2}.json', start, formatting, wifi=True)
+        else:
+            countries = bj.json_load('grobDB/ppDB/countries.json')
+            fields = [categories, tracks, laps, countries]
+            selection = []
+            for field in fields:
+                selection.append(field[0])
+            for arg in args:
+                for field in fields:
+                    for values in field:
+                        if arg in values:
+                            selection[fields.index(field)] = values
+                            break
+                if arg.isdigit():
+                    start = arg
+
+            def formatting(e, score):
+                try:
+                    e.add_field(
+                        name=f'[{score['rank']}] {score['country']} {score['player']}',
+                        value=f'{score['cr']}'
+                              f'{f'[{score['time']}]({score['video']})' if score['video'] != '' else score['time']} '
+                              f'({score['std']}) - {score['date']}', inline=False)
+                except KeyError:
+                    e.add_field(
+                        name=f'[{score['rank']}] {score['country']} {score['player']}',
+                        value=f'{f'[{score['time']}]({score['video']})' if score['video'] != '' else score['time']} '
+                              f'({score['std']}) - {score['date']}', inline=False)
+
+            await pp_leaderboard(
+                ctx, f'grobDB/ppDB/times/{selection[3][0]}{selection[0][0]}'
+                     f'{tracks.index(selection[1]) * 2 + laps.index(selection[2])}.json', start, formatting)
