@@ -5,7 +5,7 @@
     "fixes": [
       [
         null,
-        "Restart your DS and/or check IP, Netmask, DNS, Gateway and Router. You can check all the available DNSs with `/dns`. We recommended to use the server called `Wiimmfi`, because it is the most popular. `Wiimmfi 2`, even though having a different DNS, still connects to the same server, meaning you will find the same people who are using the `Wiimmfi` DNSs. Some people have noticed that they can connect successfully using the `Wiimmfi 2` DNSs but not to the `Wiimmfi` DNSs, so it might be worth checking that out if the main `Wiimmfi` DNSs do not work for you."
+        "Restart your DS and/or check IP, Netmask, DNS, Gateway and Router. You can check all the available DNSs with `/dns`. We recommended to use the server called 'Wiimmfi', because it is the most popular. 'Wiimmfi 2', even though having a different DNS, still connects to the same server, meaning you will find the same people who are using the 'Wiimmfi' DNSs. Some people have noticed that they can connect successfully using the 'Wiimmfi 2' DNSs but not to the `Wiimmfi` DNSs, so it might be worth checking that out if the main 'Wiimmfi' DNSs do not work for you."
       ]
     ]
   },
@@ -841,7 +841,7 @@
     "fixes": [
       [
         null,
-        "Reconnect again and it should be fine. This usually indicates no one else is searching or the handshake process is interfered. Try to port forward 28910, 29900, 29901 and 29920 (TCP)."
+        "Reconnect again and it should be fine. This usually indicates a high latency, interferences, no one else is searching or the handshake process is interfered. Try to port forward 28910, 29900, 29901 and 29920 (TCP)."
       ]
     ]
   },
@@ -905,7 +905,11 @@
       ],
       [
         "Fix 5",
-        "Make sure you are not using a NATted connection. Check if your WAN IP starts with 10.x or a 100.x IP. This usually indicates a NAT which blocks inbound connections. The P2P circle can't be closed and results in this error. Contact your ISP to assign a public IP and try again. This can be also fixed if your other player has put their console into the DMZ so the P2P connection can be built up anyways."
+        "Make sure you are not using a NATted connection. Check if your WAN IP starts with 10.x or a 100.x IP or if you have a such an IP in the first hops in a traceroute. This usually indicates a NAT which blocks inbound connections. The P2P circle can't be closed and results in this error. Contact your ISP to assign a public IP and try again. This can be also fixed if your other player has put their console into the DMZ so the P2P connection can be built up anyways."
+      ],
+      [
+        "Note",
+        "If you have a Nintendo 3DS or a Wii U, test your connection there and check the support code when the connection test is successful. Make sure it begins with 100-, 110- or 120-, this means you are able to matchmake with others. 220- means your NAT is not compatible. On a Nintendo Switch, make sure it has NAT Type A or B in a connection test. Sometimes C can work but you have to be lucky there to be honest."
       ],
       [
         "Further help",
