@@ -1,6 +1,5 @@
 {
   "20100": {
-    "class": "2xxxx: NAS (login server) error codes.",
     "description": "Can't connect to the internet.",
     "fixes": [
       [
@@ -10,7 +9,6 @@
     ]
   },
   "20102": {
-    "class": "2xxxx: NAS (login server) error codes.",
     "description": "Your WFC profile is banned from Wiimmfi.",
     "fixes": [
       [
@@ -28,7 +26,6 @@
     ]
   },
   "20110": {
-    "class": "2xxxx: NAS (login server) error codes.",
     "description": "Your Network does not support custom DNSs.",
     "fixes": [
       [
@@ -46,8 +43,6 @@
     ]
   },
   "23000": {
-    "class": "2xxxx: NAS (login server) error codes.",
-    "section": "23xxx: NAS returned HTTP status code xxx during login.",
     "description": "Your Network does not support custom DNSs.",
     "fixes": [
       [
@@ -57,9 +52,6 @@
     ]
   },
   "23400": {
-    "class": "2xxxx: NAS (login server) error codes.",
-    "section": "23xxx: NAS returned HTTP status code xxx during login.",
-    "group": "234xx: HTTP status code for a \"client error\".",
     "description": "The server cannot or will not process the request due to an apparent client error. Your ROM is not patched correctly (if you are not using a patched ROM your ROM might be corrupted; if you are using an original cartridge then the cause of this is unknown).",
     "fixes": [
       [
@@ -69,8 +61,6 @@
     ]
   },
   "23912": {
-    "class": "2xxxx: NAS (login server) error codes.",
-    "section": "23xxx: NAS returned HTTP status code xxx during login.",
     "description": "Your WFC profile is banned permanently from Wiimmfi.",
     "fixes": [
       [
@@ -88,8 +78,6 @@
     ]
   },
   "23917": {
-    "class": "2xxxx: NAS (login server) error codes.",
-    "section": "23xxx: NAS returned HTTP status code xxx during login.",
     "description": "Your WFC profile is temporarily banned from Wiimmfi.",
     "fixes": [
       [
@@ -111,13 +99,9 @@
     ]
   },
   "23922": {
-    "class": "2xxxx: NAS (login server) error codes.",
-    "section": "23xxx: NAS returned HTTP status code xxx during login.",
     "description": "This game is not supported by Wiimmfi."
   },
   "23923": {
-    "class": "2xxxx: NAS (login server) error codes.",
-    "section": "23xxx: NAS returned HTTP status code xxx during login.",
     "description": "This game is known by Wiimmfi but disabled, meaning it is not supported."
   },
   "42069": {
@@ -130,9 +114,6 @@
     ]
   },
   "50000": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: no interface defined or Connection 1 Settings.",
-    "section": "5xx00: Unknown interface or Connection 1 Settings.",
-    "group": "500yy: AP not found.",
     "description": "Your console cannot find your Network or any Network at all.",
     "fixes": [
       [
@@ -146,9 +127,6 @@
     ]
   },
   "50099": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 99: Unknown.",
-    "section": "5xx99: Unknown interface.",
-    "group": "500yy: AP not found.",
     "description": "Your console cannot find your Network or any Network at all.",
     "fixes": [
       [
@@ -158,10 +136,7 @@
     ]
   },
   "51099": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 99: Unknown.",
-    "section": "5xx99: Unknown interface.",
-    "group": "510yy: AP/WiFi USB Connector not found.",
-    "description": "Your console cannot find your Network.",
+    "description": "Your system is unable to locate your wireless network, usually due to an unresponsive router or incompatible network settings",
     "fixes": [
       [
         null,
@@ -170,10 +145,7 @@
     ]
   },
   "51100": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00:no interface defined or Connection 1 Settings.",
-    "section": "5xx00: Unknown interface or Connection 1 Settings.",
-    "group": "511yy: Try another WLAN channel (too much noise) or WEP key is wrong.",
-    "description": "The WEP key you have set is incorrect or on your WLAN channel has too much noise.",
+    "description": "Connection 1 Settings: The wireless network password you are using has changed since you last attempted to connect or on your WLAN channel has too much noise.",
     "fixes": [
       [
         null,
@@ -182,10 +154,7 @@
     ]
   },
   "51101": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
-    "section": "5xx01: Connection 2 Settings.",
-    "group": "511yy: Try another WLAN channel (too much noise) or WEP key is wrong.",
-    "description": "The WEP key you have set is incorrect or on your WLAN channel has too much noise.",
+    "description": "Connection 2 Settings: The wireless network password you are using has changed since you last attempted to connect or on your WLAN channel has too much noise.",
     "fixes": [
       [
         null,
@@ -194,10 +163,7 @@
     ]
   },
   "51102": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 3 Settings.",
-    "section": "5xx02: Connection 3 Settings.",
-    "group": "511yy: Try another WLAN channel (too much noise) or WEP key is wrong.",
-    "description": "The WEP key you have set is incorrect or on your WLAN channel has too much noise.",
+    "description": "Connection 3 Settings: The wireless network password you are using has changed since you last attempted to connect or on your WLAN channel has too much noise.",
     "fixes": [
       [
         null,
@@ -206,10 +172,7 @@
     ]
   },
   "51300": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: no interface defined or Connection 1 Settings.",
-    "section": "5xx00: Unknown interface or Connection 1 Settings.",
-    "group": "513yy: WLAN connection to access point failed.",
-    "description": "Your connection is overlapping with other channels in your Network or your router is blocking the MAC address of your DS.",
+    "description": "Connection 1 Settings: This is most often the result of using the incorrect wireless network password.",
     "fixes": [
       [
         "Fix 1 (Router and some Mobile Hotspots only)",
@@ -221,15 +184,11 @@
       ],
       [
         "Fix 3",
-        "Check if your router/hotspot is blocking the MAC adddress of your DS."
+        "Ensure you are using a compatible wireless network. Each system is compatible with specific wireless and security standards. An incompatible network configuration could be preventing your system from connecting online. Make sure to use 802.11b (legacy mode, up to 11 Mbps)."
       ]
-    ]
   },
   "51301": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
-    "section": "5xx01: Connection 2 Settings.",
-    "group": "513yy: WLAN connection to access point failed.",
-    "description": "Your connection is overlapping with other channels in your Network or your router is blocking the MAC address of your DS.",
+    "description": "Connection 2 Settings: This is most often the result of using the incorrect wireless network password.",
     "fixes": [
       [
         "Fix 1 (Router and some Mobile Hotspots only)",
@@ -241,15 +200,11 @@
       ],
       [
         "Fix 3",
-        "Check if your router/hotspot is blocking the MAC adddress of your DS."
+        "Ensure you are using a compatible wireless network. Each system is compatible with specific wireless and security standards. An incompatible network configuration could be preventing your system from connecting online. Make sure to use 802.11b (legacy mode, up to 11 Mbps)."
       ]
-    ]
   },
   "51302": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings.",
-    "section": "5xx02: Connection 3 Settings.",
-    "group": "513yy: WLAN connection to access point failed.",
-    "description": "Your connection is overlapping with other channels in your Network or your router is blocking the MAC address of your DS.",
+    "description": "Connection 3 Settings: This is most often the result of using the incorrect wireless network password.",
     "fixes": [
       [
         "Fix 1 (Router and some Mobile Hotspots only)",
@@ -261,15 +216,11 @@
       ],
       [
         "Fix 3",
-        "Check if your router/hotspot is blocking the MAC adddress of your DS."
+        "Ensure you are using a compatible wireless network. Each system is compatible with specific wireless and security standards. An incompatible network configuration could be preventing your system from connecting online. Make sure to use 802.11b (legacy mode, up to 11 Mbps)."
       ]
-    ]
   },
   "52000": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: no interface defined or Connection 1 Settings",
-    "section": "5xx02: Unknown interface or Connection 1 Settings.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
-    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+    "description": "Connection 1 Settings: Unable to send and receive necessary data.",
     "fixes": [
       [
         "Fix 1 (Wiimmfi server-only, might not work)",
@@ -298,10 +249,7 @@
     ]
   },
   "52001": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings",
-    "section": "5xx02: Connection 2 Settings.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
-    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+     "description": "Connection 2 Settings: Unable to send and receive necessary data.",
     "fixes": [
       [
         "Fix 1 (Wiimmfi server-only, might not work)",
@@ -330,10 +278,7 @@
     ]
   },
   "52002": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings",
-    "section": "5xx02: Connection 3 Settings.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
-    "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
+     "description": "Connection 3 Settings: Unable to send and receive necessary data.",
     "fixes": [
       [
         "Fix 1 (Wiimmfi server-only, might not work)",
@@ -362,9 +307,6 @@
     ]
   },
   "52003": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 03: Unknown.",
-    "section": "5xx03: Unknown interface.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
     "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
     "fixes": [
       [
@@ -394,9 +336,6 @@
     ]
   },
   "52004": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 04: Unknown.",
-    "section": "5xx04: Unknown interface.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
     "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
     "fixes": [
       [
@@ -426,9 +365,6 @@
     ]
   },
   "52005": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 05: Unknown.",
-    "section": "5xx05: Unknown interface.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
     "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
     "fixes": [
       [
@@ -458,9 +394,6 @@
     ]
   },
   "52006": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 06: Unknown.",
-    "section": "5xx06: Unknown interface.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
     "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
     "fixes": [
       [
@@ -490,9 +423,6 @@
     ]
   },
   "52007": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 07: Unknown.",
-    "section": "5xx07: Unknown interface.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
     "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
     "fixes": [
       [
@@ -522,9 +452,6 @@
     ]
   },
   "52008": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 08: Unknown.",
-    "section": "5xx08: Unknown interface.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
     "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
     "fixes": [
       [
@@ -554,9 +481,6 @@
     ]
   },
   "52009": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 09: Unknown.",
-    "section": "5xx09: Unknown interface.",
-    "group": "520yy: Unable to connect to your network (likely DHCP failed).",
     "description": "Your DS cannot connect to Wiimmfi. The console is not able to obtain an IP address from your router/hotspot.",
     "fixes": [
       [
@@ -586,10 +510,7 @@
     ]
   },
   "52100": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: No interface defined or Connection 1 Setting.",
-    "section": "5xx00: Unknown interface or Connection 1 Settings.",
-    "group": "521yy: DNS failed or connection to the WLAN.",
-    "description": "Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
+    "description": "Connection 1 Settings: Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
     "fixes": [
       [
         "Fix 1",
@@ -602,10 +523,7 @@
     ]
   },
   "52101": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
-    "section": "5xx01: Connection 2 Settings.",
-    "group": "521yy: DNS failed or connection to the WLAN.",
-    "description": "Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
+    "description": "Connection 2 Settings: Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
     "fixes": [
       [
         "Fix 1",
@@ -618,10 +536,7 @@
     ]
   },
   "52102": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings.",
-    "section": "5xx01: Connection 3 Settings.",
-    "group": "521yy: DNS failed or connection to the WLAN.",
-    "description": "Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
+    "description": "Connection 3 Settings: Your DS cannot connect to Wiimmfi. Our experience has shown that this error message is typically caused by a basic setting in your router, such as transmission rate.",
     "fixes": [
       [
         "Fix 1",
@@ -634,44 +549,33 @@
     ]
   },
   "52200": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 00: No interface defined or Connection 1 Setting.",
-    "section": "5xx00: Unknown interface or Connection 1 Settings.",
-    "group": "522yy: Connection test failed. conntest.nintendowifi.net or conntest.wiimmfi.de is unreachable.",
-    "description": "The connection to the servers failed.",
+    "description": "Connection 1 Settings: The connection to the servers failed.",
     "fixes": [
       [
         null,
-        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device. Usually no Internet interface defined."
+        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device."
       ]
     ]
   },
   "52201": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 01: Connection 2 Settings.",
-    "section": "5xx01: Connection 2 Settings.",
-    "group": "522yy: Connection test failed. conntest.nintendowifi.net or conntest.wiimmfi.de is unreachable.",
-    "description": "The connection to the servers failed.",
+    "description": "Connection 2 Settings: The connection to the servers failed.",
     "fixes": [
       [
         null,
-        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device. Usually no Internet interface defined."
+        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device."
       ]
     ]
   },
   "52202": {
-    "class": "5xxyy: Network connection error. \"yy\" is interface-specific.\nyy = 02: Connection 3 Settings.",
-    "section": "5xx02: Connection 3 Settings.",
-    "group": "522yy: Connection test failed. conntest.nintendowifi.net or conntest.wiimmfi.de is unreachable.",
-    "description": "The connection to the servers failed.",
+    "description": "Connection 3 Settings: The connection to the servers failed.",
     "fixes": [
       [
         null,
-        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device. Usually no Internet interface defined."
+        "Restart your console first. If the error is not fixed, try turning off your Network for 5 seconds to refresh the ports and restart your device."
       ]
     ]
   },
   "60000": {
-    "class": "6xyyz: Server error during login.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "A Friend Roaster with friends saved with another server is being used.",
     "fixes": [
       [
@@ -681,9 +585,6 @@
     ]
   },
   "61010": {
-    "class": "6xyyz: Server error during login.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "Server error during login.",
     "fixes": [
       [
@@ -693,10 +594,7 @@
     ]
   },
   "61020": {
-    "class": "6xyyz: Server error during login.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.",
-    "description": "Your DS got disconnected from Wiimmfi for no apparent reason.",
+    "description": "The Profile server was temporary not available.",
     "fixes": [
       [
         null,
@@ -705,9 +603,6 @@
     ]
   },
   "61070": {
-    "class": "6xyyz: Server error during login.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy2: Parameter error.",
     "description": "Timeout occurred while connecting the GPSP server of Wiimmfi.",
     "fixes": [
       [
@@ -717,9 +612,6 @@
     ]
   },
   "61102": {
-    "class": "6xyyz: Server error during login.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy2: Parameter error.\ncx10z: Max connections to your router exceeded.",
     "description": "Your router has reached the maximum connections.",
     "fixes": [
       [
@@ -738,33 +630,24 @@
     ]
   },
   "71010": {
-    "class": "7xyyz: Server error during friend management.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.",
-    "description": "A Friend Roaster with friends saved with another server is being used.",
+    "description": "A Friend Roster with friends saved with another server is being used.",
     "fixes": [
       [
         null,
-        "Go to the Friends Roaster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
+        "Go to the Friends Roster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
       ]
     ]
   },
   "71020": {
-    "class": "7xyyz: Server error during friend management.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.\ncx02z: GameSpy server failure.",
-    "description": "A Friend Roaster with friends saved with another server is being used.",
+    "description": "A Friend Roster with friends saved with another server is being used.",
     "fixes": [
       [
         null,
-        "Go to the Friends Roaster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
+        "Go to the Friends Roster and remove all of your friends. In Mario Kart DS the Roaster can be accessed from the title menu, by going to `Records` and then `Friends`."
       ]
     ]
   },
   "81010": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "Disconnect from or by GPCM server, GPCM sent an error message or suddenly lost internet connection.",
     "fixes": [
       [
@@ -774,9 +657,6 @@
     ]
   },
   "82010": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "Disconnect from or by GPCM server, GPCM sent an error message or suddenly lost internet connection.",
     "fixes": [
       [
@@ -786,9 +666,6 @@
     ]
   },
   "82020": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c2yyz: Persistent error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "MASTER Server of Wiimmfi down or UDP packets are being blocked in your network.",
     "fixes": [
       [
@@ -798,9 +675,6 @@
     ]
   },
   "84020": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c4yyz: QR2 error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "MASTER Server of Wiimmfi down or UDP packets are being blocked in your network.",
     "fixes": [
       [
@@ -810,10 +684,7 @@
     ]
   },
   "84060": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c4yyz: QR2 error.",
-    "group": "cxyy0: Error is not fatal.\ncx06z: Socket bind error.",
-    "description": "Your DS got disconnected from Wiimmfi for no apparent reason and it's usually a temporary problem.",
+    "description": "Your DS got disconnected from Wiimmfi for a temporary socket bind error and it's usually a temporary problem.",
     "fixes": [
       [
         null,
@@ -822,9 +693,6 @@
     ]
   },
   "85010": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c5yyz: ServerBrowser error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "Matchmaking retrieving server is down. MS is used by the clients to search for hosts for matchmaking.",
     "fixes": [
       [
@@ -834,9 +702,6 @@
     ]
   },
   "85020": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c5yyz: ServerBrowser error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "While online, each client (game) sends a UDP/IP packet with the current online status to the MASTER approximately every 30–60sec. This data is stored in a game specific database table for matchmaking, which can be retrieved by the MS server.",
     "fixes": [
       [
@@ -846,9 +711,6 @@
     ]
   },
   "85030": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c5yyz: ServerBrowser error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It can be the DNS didn't respond in time for the console.",
     "fixes": [
       [
@@ -858,9 +720,6 @@
     ]
   },
   "86020": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c6yyz: NATNEG error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "The name NATNEG is a combination of NAT (Network Address Translation) and NEG (NEGotiation). When playing with other players, the clients (games) must create a client-to-client connection to exchange game data. Because of firewalls and network address translations (NAT) a server must be used to open the gates. And this server is NATNEG.",
     "fixes": [
       [
@@ -870,9 +729,6 @@
     ]
   },
   "86030": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c6yyz: NATNEG error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "The DNS server you use doesn't know what to reply to *.natneg.wiimmfi.de.",
     "fixes": [
       [
@@ -882,9 +738,6 @@
     ]
   },
   "86420": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c6yyz: NATNEG error.",
-    "group": "cxyy0: Error is not fatal.\ncx42z: NATNEG has failed too many times. General error during NATNEG (connection to other players).",
     "description": "Your Network cannot establish P2P (peer-to-peer) connections as host or as both host and guest. Be ready for some headaches, because it is very tedious to fix. It also cannot be fixed from a Mobile Hotspot, unless you have access to Port Forwarding which is not accessible for 99% of the phones.",
     "fixes": [
       [
@@ -908,19 +761,12 @@
         "Make sure you are not using a NATted connection. Check if your WAN IP starts with 10.x or a 100.x IP or if you have a such an IP in the first hops in a traceroute. This usually indicates a NAT which blocks inbound connections. The P2P circle can't be closed and results in this error. Contact your ISP to assign a public IP and try again. This can be also fixed if your other player has put their console into the DMZ so the P2P connection can be built up anyways."
       ],
       [
-        "Note",
-        "If you have a Nintendo 3DS or a Wii U, test your connection there and check the support code when the connection test is successful. Make sure it begins with 100-, 110- or 120-, this means you are able to matchmake with others. 220- means your NAT is not compatible. On a Nintendo Switch, make sure it has NAT Type A or B in a connection test. Sometimes C can work but you have to be lucky there to be honest."
-      ],
-      [
         "Further help",
         "This error is explained very well in this guide, so if something is not clear, try giving it a read: https://docs.google.com/document/d/1f3PChwQig40UaiPXlh-Gi5CggGiBPzyrpiecLZlT8ZE/edit?usp=sharing."
       ]
     ]
   },
   "87001": {
-    "class": "8xyyz: Server error during matchmaking.",
-    "section": "c7yyz: GT2 error.",
-    "group": "cxyy1: Memory allocation failure.",
     "description": "Congratulations! This is a very rare error that only very few people got! And not even Wiimmfi devs know what causes this so if you constantly get it, good luck finding a fix!",
     "fixes": [
       [
@@ -930,9 +776,6 @@
     ]
   },
   "91000": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "GPCM error",
     "fixes": [
       [
@@ -942,9 +785,6 @@
     ]
   },
   "91010": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.\ncx02z: GameSpy server failure.",
     "description": "Disconnect from or by GPCM server, GPCM sent an error message or suddenly lost internet connection.",
     "fixes": [
       [
@@ -954,9 +794,6 @@
     ]
   },
   "91020": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.\ncx02z: GameSpy server failure.",
     "description": "Your DS got disconnected from Wiimmfi for no apparent reason.",
     "fixes": [
       [
@@ -966,9 +803,6 @@
     ]
   },
   "91070": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.\ncx07z: Timeout occured.",
     "description": "Your DS got disconnected from Wiimmfi for no apparent reason.",
     "fixes": [
       [
@@ -978,9 +812,6 @@
     ]
   },
   "91420": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c1yyz: GP error.",
-    "group": "cxyy0: Error is not fatal.\ncx42z: NATNEG has failed too many times.",
     "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
     "fixes": [
       [
@@ -990,9 +821,6 @@
     ]
   },
   "94020": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c4yyz: QR2 error.",
-    "group": "cxyy0: Error is not fatal.\ncx03z: DNS failure.",
     "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
     "fixes": [
       [
@@ -1002,9 +830,6 @@
     ]
   },
   "94030": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c4yyz: QR2 error.",
-    "group": "cxyy0: Error is not fatal.\ncx03z: DNS failure.",
     "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
     "fixes": [
       [
@@ -1014,9 +839,6 @@
     ]
   },
   "98020": {
-    "class": "9xyyz: General server error codes.",
-    "section": "c8yyz: GHTTP error.",
-    "group": "cxyy0: Error is not fatal.",
     "description": "Your DS got disconnected from Wiimmfi for no apparent reason. It seems this might happen consistently with games that are in Testing phase and not fully supported by Wiimmfi.",
     "fixes": [
       [
