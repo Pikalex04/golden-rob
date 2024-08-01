@@ -186,6 +186,7 @@
         "Fix 3",
         "Ensure you are using a compatible wireless network. Each system is compatible with specific wireless and security standards. An incompatible network configuration could be preventing your system from connecting online. Make sure to use 802.11b (legacy mode, up to 11 Mbps)."
       ]
+    ]
   },
   "51301": {
     "description": "Connection 2 Settings: This is most often the result of using the incorrect wireless network password.",
@@ -196,12 +197,13 @@
       ],
       [
         "Fix 2 (unrecommended, might not work)",
-        "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \\\"fixes itself\\\"."
+        "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \"fixes itself\"."
       ],
       [
         "Fix 3",
         "Ensure you are using a compatible wireless network. Each system is compatible with specific wireless and security standards. An incompatible network configuration could be preventing your system from connecting online. Make sure to use 802.11b (legacy mode, up to 11 Mbps)."
       ]
+    ]
   },
   "51302": {
     "description": "Connection 3 Settings: This is most often the result of using the incorrect wireless network password.",
@@ -212,12 +214,13 @@
       ],
       [
         "Fix 2 (unrecommended, might not work)",
-        "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \\\"fixes itself\\\"."
+        "Sometimes this error gets fixed with time, so you might just want to wait a bit until it \"fixes itself\"."
       ],
       [
         "Fix 3",
         "Ensure you are using a compatible wireless network. Each system is compatible with specific wireless and security standards. An incompatible network configuration could be preventing your system from connecting online. Make sure to use 802.11b (legacy mode, up to 11 Mbps)."
       ]
+    ]
   },
   "52000": {
     "description": "Connection 1 Settings: Unable to send and receive necessary data.",
@@ -249,7 +252,7 @@
     ]
   },
   "52001": {
-     "description": "Connection 2 Settings: Unable to send and receive necessary data.",
+    "description": "Connection 2 Settings: Unable to send and receive necessary data.",
     "fixes": [
       [
         "Fix 1 (Wiimmfi server-only, might not work)",
@@ -278,7 +281,7 @@
     ]
   },
   "52002": {
-     "description": "Connection 3 Settings: Unable to send and receive necessary data.",
+    "description": "Connection 3 Settings: Unable to send and receive necessary data.",
     "fixes": [
       [
         "Fix 1 (Wiimmfi server-only, might not work)",
