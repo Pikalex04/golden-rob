@@ -29,7 +29,7 @@ The bot provides a help command for any of these functions. Check that out for m
 
 - [x] Getting the bot verified.
 - [ ] Using only (or mostly, just when convenient) SQL databases.
-- [ ] Add option to remove Social Media or Rankings links.
+- [x] Add option to remove Social Media or Rankings links.
 
 ## Contributing
 

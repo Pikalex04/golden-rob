@@ -113,49 +113,58 @@ class ProfileMenu(ViewModel):
     async def bio_button(self, interaction, button):
         await interaction.response.send_modal(ModalMenu(
             title='Please enter your new bio!', ctx=self.ctx,
-            inputs=[TextInput(style=TextStyle.long, label='New bio', required=True, max_length=200,
-                              placeholder='Average MKDS Enjoyer')], func=bio_func))
-        await interaction.message.delete()
+            inputs=[TextInput(style=TextStyle.long, label='New bio', required=False, max_length=200,
+                              placeholder='Leave blank to remove...')], func=bio_func))
 
     @view_button(label='Country', style=ButtonStyle.gray, emoji='<:red_team:1233070943384109077>')
     async def country_button(self, interaction, button):
         e = Embed(
             description=f'{interaction.user.mention}, please react to __**this message**__ with the flag emoji of your '
-                        'country!')
+                        'country! To remove your country, reach with ❌ instead.')
         e.set_author(name='Edit Country', icon_url='https://cdn.discordapp.com/emojis/1233070943384109077.png?size=256')
         await interaction.response.send_message(embed=e)
         await interaction.message.delete()
+        creation_date = await interaction.original_response()
+        creation_date = creation_date.created_at
 
-        async def check(r, user):
+        def check(r, user):
             flag_check = True
-            print(str(r.emoji))
-            try:
-                _ = bc.get_official_country(bc.letter_parser(str(r.emoji)).upper())
-            except KeyError:
-                flag_check = False
-            return (r.message.created_at == await interaction.original_message().created_at and
-                    user.id == interaction.user.id and flag_check)
+            if str(r.emoji) == '❌':
+                return r.message.created_at == creation_date and user.id == interaction.user.id and flag_check
+            else:
+                try:
+                    _ = bc.get_official_country(bc.letter_parser(str(r.emoji)).upper())
+                except KeyError:
+                    flag_check = False
+                return r.message.created_at == creation_date and user.id == interaction.user.id and flag_check
 
         try:
             flag = await interaction.client.wait_for('reaction_add', timeout=60, check=check)
         except TimeoutError:
             await interaction.channel.send(embed=be.timeout_embed(interaction.user.mention))
         else:
-            flag_code = bc.letter_parser(str(flag[0].emoji)).upper()
-            update_profile(
-                interaction.user, 'country', [bc.get_official_country(flag_code), f':flag_{flag_code.lower()}:'])
-            response = await interaction.channel.send(
-                embed=be.success_embed(f'{interaction.user.mention}, your country was updated successfully!'))
-            await response.delete(delay=10)
+            if str(flag[0].emoji) == '❌':
+                update_profile(
+                    interaction.user, 'country', ["Unknown", ":flag_white:"])
+                response = await interaction.channel.send(
+                    embed=be.success_embed(f'{interaction.user.mention}, your country was updated successfully!'))
+                await response.delete(delay=10)
+            else:
+                flag_code = bc.letter_parser(str(flag[0].emoji)).upper()
+                update_profile(
+                    interaction.user, 'country', [bc.get_official_country(flag_code), f':flag_{flag_code.lower()}:'])
+                response = await interaction.channel.send(
+                    embed=be.success_embed(f'{interaction.user.mention}, your country was updated successfully!'))
+                await response.delete(delay=10)
         await interaction.delete_original_response()
 
     @view_button(label='Socials', style=ButtonStyle.gray, emoji='<:multiplayer_icon:1233072100223488040>')
     async def socials_button(self, interaction, button):
         await interaction.response.send_modal(ModalMenu(
             title='Please enter the link to your profile!', ctx=self.ctx,
-            inputs=[TextInput(style=TextStyle.short, label='Link to your profile', max_length=100,
-                              placeholder='https://')], func=socials_func))
-        await interaction.message.delete()
+            inputs=[TextInput(
+                style=TextStyle.short, label='Link to your profile', max_length=100,
+                placeholder='To remove a profile, set the domain URL with no user ID')], func=socials_func))
 
     @view_button(label='Go back', style=ButtonStyle.blurple, emoji='<:settings_icon:1233072101808935013>')
     async def go_back_button(self, interaction, button):
@@ -163,30 +172,51 @@ class ProfileMenu(ViewModel):
 
 
 async def bio_func(modal, interaction):
-    for word in modal.children[0].value.lower().split():
-        if word in bj.json_load('grobDB/settings/ui_sanitizer.json'):
-            await interaction.response.send_message(embed=be.error_embed(
-                f'{interaction.user.mention}, that word is not allowed in a bio!'))
-            break
-    else:
-        update_profile(interaction.user, 'bio', modal.children[0].value)
+    await interaction.message.delete()
+    response = modal.children[0].value.lower()
+    if len(response) == 0:
+        update_profile(interaction.user, 'bio', '')
         await interaction.response.send_message(embed=be.success_embed(
-            f'{interaction.user.mention}, your bio was updated successfully!'))
+            f'{interaction.user.mention}, your bio was removed successfully!'))
+    else:
+        for word in response.split():
+            if word in bj.json_load('grobDB/settings/ui_sanitizer.json'):
+                await interaction.response.send_message(embed=be.error_embed(
+                    f'{interaction.user.mention}, that word is not allowed in a bio!'))
+                break
+        else:
+            update_profile(interaction.user, 'bio', response)
+            await interaction.response.send_message(embed=be.success_embed(
+                f'{interaction.user.mention}, your bio was updated successfully!'))
 
 
 async def socials_func(modal, interaction):
+    await interaction.message.delete()
     socials = bj.json_load('grobDB/settings/socials.json')
+    response = modal.children[0].value.lower()
     for social in socials:
         for social_link in social[1]:
-            if modal.children[0].value.lower().startswith(social_link):
-                try:
-                    existing_profiles = (bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json'))['socials']
-                except (KeyError, FileNotFoundError):
-                    existing_profiles = check_profile(interaction.user.id)
-                existing_profiles[social[2]] = modal.children[0].value
-                update_profile(interaction.user, 'socials', existing_profiles)
-                await interaction.response.send_message(embed=be.success_embed(
-                    f'{interaction.user.mention}, your **{social[0]}** profile was updated successfully!'))
+            if response.startswith(social_link):
+                if len(response.split('/')[-1]) == 0:
+                    try:
+                        existing_profiles = (bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json'))[
+                            'socials']
+                    except (KeyError, FileNotFoundError):
+                        existing_profiles = check_profile(interaction.user.id)
+                    existing_profiles[social[2]] = ''
+                    update_profile(interaction.user, 'socials', existing_profiles)
+                    await interaction.response.send_message(embed=be.success_embed(
+                        f'{interaction.user.mention}, your **{social[0]}** profile was removed successfully!'))
+                else:
+                    try:
+                        existing_profiles = (bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json'))[
+                            'socials']
+                    except (KeyError, FileNotFoundError):
+                        existing_profiles = check_profile(interaction.user.id)
+                    existing_profiles[social[2]] = response
+                    update_profile(interaction.user, 'socials', existing_profiles)
+                    await interaction.response.send_message(embed=be.success_embed(
+                        f'{interaction.user.mention}, your **{social[0]}** profile was updated successfully!'))
                 return
     else:
         await interaction.response.send_message(embed=be.error_embed(
@@ -212,34 +242,34 @@ class RankingsMenu(ViewModel):
     async def players_page_button(self, interaction, button):
         await interaction.response.send_modal(ModalMenu(
             title='Please enter the link to your timesheet!', ctx=self.ctx,
-            inputs=[TextInput(style=TextStyle.short, label='Your Players\' Page timesheet', min_length=46,
-                              max_length=59, placeholder='https://www.mariokart64.com/mkds/profile.php?pid=')],
+            inputs=[TextInput(
+                style=TextStyle.short, label='Leave blank if you want to remove...', max_length=59,
+                placeholder='https://www.mariokart64.com/mkds/profile.php?pid=', required=False)],
             func=rankings_func, special=[
                 ['https://www.mariokart64.com/mkds/profile.php?pid=',
                  'https://mariokartplayers.com/mkds/profile.php?pid=',
                  'https://mariokart64.com/mkds/profile.php?pid=',
                  'https://www.mariokartplayers.com/mkds/profile.php?pid='], 'players_page', 'Players\' Page']))
-        await interaction.message.delete()
 
     @view_button(label='speedrun.com', style=ButtonStyle.gray, emoji='<:speedruncom:1233054965388415126>')
     async def speedrun_com_button(self, interaction, button):
         await interaction.response.send_modal(ModalMenu(
             title='Please enter the link to your profile!', ctx=self.ctx,
-            inputs=[TextInput(style=TextStyle.short, label='Your speedrun.com profile', min_length=27,
-                              max_length=100, placeholder='https://speedrun.com/users/')],
+            inputs=[TextInput(
+                style=TextStyle.short, label='Leave blank if you want to remove...', max_length=100,
+                placeholder='https://speedrun.com/users/', required=False)],
             func=rankings_func, special=[['https://www.speedrun.com/users/', 'https://speedrun.com/users/'],
                                          'speedrun.com', 'speedrun.com']))
-        await interaction.message.delete()
 
     @view_button(label='Cyberscore', style=ButtonStyle.gray, emoji='<:cyberscore:1233056528672489533>')
     async def cyberscore_button(self, interaction, button):
         await interaction.response.send_modal(ModalMenu(
             title='Please enter the link to your profile!', ctx=self.ctx,
-            inputs=[TextInput(style=TextStyle.short, label='Your Cyberscore profile', min_length=31,
-                              max_length=100, placeholder='https://cyberscore.me.uk/user/')],
+            inputs=[TextInput(
+                style=TextStyle.short, label='Leave blank if you want to remove...', max_length=100,
+                placeholder='https://cyberscore.me.uk/user/', required=False)],
             func=rankings_func, special=[['https://cyberscore.me.uk/user/', 'https://www.cyberscore.me.uk/user/'],
                                          'cyberscore', 'Cyberscore']))
-        await interaction.message.delete()
 
     @view_button(label='Go back', style=ButtonStyle.blurple, emoji='<:settings_icon:1233072101808935013>')
     async def go_back_button(self, interaction, button):
@@ -247,15 +277,40 @@ class RankingsMenu(ViewModel):
 
 
 async def rankings_func(modal, interaction, special):
-    for link in special[0]:
-        if modal.children[0].value.lower().startswith(link):
-            update_profile(interaction.user, special[1], modal.children[0].value)
-            await interaction.response.send_message(embed=be.success_embed(
-                f'{interaction.user.mention}, your {special[2]} profile was updated successfully!'))
-            break
+    await interaction.message.delete()
+    response = modal.children[0].value
+    if len(response) == 0:
+        update_profile(interaction.user, special[1], 'No profile')
+        await interaction.response.send_message(embed=be.success_embed(
+            f'{interaction.user.mention}, your {special[2]} profile was removed successfully!'))
     else:
-        await interaction.response.send_message(embed=be.error_embed(
-            f'{interaction.user.mention}, that is not a {special[2]} profile!'))
+        for link in special[0]:
+            try:
+                if response.lower().startswith(link) and len(response.split('/')[-1]) > 0:
+                    update_res = response
+                    if special[1] == 'players_page':
+                        if int(response.split('=')[-1]) > 0:
+                            pp_db = bj.json_load('grobDB/ppDB/stats/players.json')
+                            split_res = response.lower().split('?')[-1]
+                            for player in pp_db['times']:
+                                if player['info'].split('?')[-1] == split_res:
+                                    update_res = f'[{player['player']}]({response})'
+                                    break
+                            else:
+                                update_res = f'[{split_res}]({response})'
+                        else:
+                            raise ValueError
+                    update_profile(interaction.user, special[1], update_res)
+                    await interaction.response.send_message(embed=be.success_embed(
+                        f'{interaction.user.mention}, your {special[2]} profile was updated successfully!'))
+                    break
+            except ValueError:
+                await interaction.response.send_message(embed=be.error_embed(
+                    f'{interaction.user.mention}, that is not a {special[2]} profile!'))
+                break
+        else:
+            await interaction.response.send_message(embed=be.error_embed(
+                f'{interaction.user.mention}, that is not a {special[2]} profile!'))
 
 
 class FriendCodeMenu(ViewModel):
@@ -292,10 +347,10 @@ async def main_add_friend_func(interaction, ctx):
                           placeholder=choice(['Nintendo 3DS', 'melonDS', 'CTGP Nitro', 'Capture Card DS']),
                           required=False)],
         func=add_friend_func))
-    await interaction.message.delete()
 
 
 async def add_friend_func(modal, interaction):
+    await interaction.message.delete()
     code = ''.join(modal.children[0].value.split('-'))
     if not code.isdigit():
         await interaction.response.send_message(
@@ -359,6 +414,7 @@ class FunctionFriendCodeMenu(ViewModel):
 
 
 async def edit_code_func(modal, interaction):
+    await interaction.delete_original_response()
     if not modal.children[0].value:
         code = ''.join(modal.children[0].placeholder.split('-'))
     else:
@@ -412,7 +468,6 @@ async def edit_friend_code_function(select, interaction, ctx):
                         TextInput(style=TextStyle.short, label='Details about your Friend Code', max_length=25,
                                   placeholder=friend_code[1], required=False)],
                 func=edit_code_func))
-            await interaction.delete_original_response()
 
 
 async def delete_friend_code_function(select, interaction, ctx):

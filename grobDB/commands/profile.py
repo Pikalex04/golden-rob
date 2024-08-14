@@ -33,8 +33,7 @@ def run(bot):
         e.add_field(name='Bio', value=data['bio'] if data['bio'] != '' else 'Nothing interesting here!', inline=False)
         e.add_field(
             name='Players\' Page',
-            value=f'[{data["players_page"].split('=')[-1]}]({data["players_page"]})'
-            if data['players_page'] != 'Unranked' else data['players_page'])
+            value=data["players_page"] if data['players_page'] != 'Unranked' else data['players_page'])
         e.add_field(
             name='speedrun.com',
             value=f'[{data["speedrun.com"].split('/', 4)[-1]}]({data["speedrun.com"]})'
