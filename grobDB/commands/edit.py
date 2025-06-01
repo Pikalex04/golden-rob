@@ -1,19 +1,46 @@
 from discord import ButtonStyle, Embed, SelectOption, TextStyle
 from discord.ext.commands import BucketType, CommandOnCooldown, cooldown
 from discord.ui import Modal, Select, TextInput, button as view_button, View
+from json import dumps, loads
 from random import choice
+from sqlite3 import connect
 
 from better_functions import better_countries as bc, better_discord as bd, better_embeds as be, better_json as bj
 from grobDB.common import check_profile
 
 
-def update_profile(user, field, value):
-    try:
-        file = bj.json_load(f'grobDB/users/{user.id}/profile.json')
-    except FileNotFoundError:
-        file = check_profile(user.id)
-    file[field] = value
-    bj.json_dump(f'grobDB/users/{user.id}/profile.json', file)
+def update_profile(user: int, column: str, data):
+    """
+    Updates the user's column with the new data.
+
+    Parameters
+    ----------
+    user : int
+        The user's ID.
+
+    column : str
+        The column to update.
+
+    data :
+        The data to add.
+
+    Returns
+    -------
+    None
+    """
+
+    check_profile(user)  # Makes sure the user is present in the database
+
+    # Opens the users database
+    conn = connect("grobDB/usersDB/users.db")
+    cursor = conn.cursor()
+
+    # Updates the value
+    cursor.execute(f"UPDATE profile SET {column} = ? WHERE id = ?", (data, user))
+    conn.commit()
+
+    conn.close()
+    return
 
 
 class ViewModel(View):
@@ -81,12 +108,39 @@ class MainMenu(ViewModel):
 
     @view_button(label='Friend Code', style=ButtonStyle.gray, emoji='<:friend_online:1232707683199746099>')
     async def friend_code_button(self, interaction, button):
-        try:
-            friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-        except (KeyError, FileNotFoundError):
-            friend_codes = check_profile(interaction.user.id)
-        if friend_codes:
-            hide = False
+        """
+        Defines what happens when the friend code button is pressed.
+        If the user has any friend codes saved, it gets prompted with the options of adding a new one, editing one or
+        deleting one.
+        A user may add a friend code only if there are less than 5 friend codes already saved under its name.
+
+        If the user doesn't have any friend codes yet, the button forwards to the function to add a new friend code.
+
+        Parameters
+        ----------
+        interaction : discord.Interaction
+            The interaction in which the button was pressed.
+
+        button : discord.ui.Button
+            The button that was pressed.
+
+        Returns
+        -------
+        None
+        """
+
+        # Opens the users database
+        conn = connect("grobDB/usersDB/users.db")
+        cursor = conn.cursor()
+
+        # Retrieval and selection of the user's friend codes
+        cursor.execute("SELECT fcs FROM profile WHERE id = ?", (interaction.user.id,))
+        friend_codes = loads(cursor.fetchone()[0])
+
+        conn.close()
+
+        # Checks if there are friend codes already present
+        if friend_codes: # Creates the menu to select what to do with friend codes
             fields = [
                 ['<:stable_connection_icon:1234126101513764875> Add Code',
                  'Add another Friend Code to the database'],
@@ -95,87 +149,187 @@ class MainMenu(ViewModel):
                 ['<:unstable_connection_icon:1234126098011263007> Delete Code',
                  'Delete one of your saved Friend Codes.']
             ]
+
+            # If the user already has 5 friend codes, the option to add a new one is disabled
             if len(friend_codes) == 5:
                 fields = fields[1:]
                 hide = True
+            else:
+                hide = False
+
+            # Set-up of the embed
             e = Embed(title='What do you want to do?')
             e.set_author(name='Edit Friend Codes',
                          icon_url='https://cdn.discordapp.com/emojis/1232707683199746099.png?size=256')
             for field in fields:
                 e.add_field(name=field[0], value=field[1], inline=False)
+
             await interaction.response.edit_message(embed=e, view=FriendCodeMenu(hide=hide, ctx=self.ctx))
         else:
-            await main_add_friend_func(interaction, self.ctx)
+            await main_add_friend_func(interaction, self.ctx)  # Opens the menu to add a friend code
 
 
 class ProfileMenu(ViewModel):
     @view_button(label='Bio', style=ButtonStyle.gray, emoji='<:singleplayer_icon:1233072103675138158>')
     async def bio_button(self, interaction, button):
+        """
+        Opens the menu for editing the bio.
+
+        Parameters
+        ----------
+        interaction : discord.Interaction
+            The interaction in which the button was pressed.
+
+        button : discord.ui.Button
+            The button that was pressed.
+
+        Returns
+        -------
+        None
+        """
         await interaction.response.send_modal(ModalMenu(
             title='Please enter your new bio!', ctx=self.ctx,
             inputs=[TextInput(style=TextStyle.long, label='New bio', required=False, max_length=200,
                               placeholder='Leave blank to remove...')], func=bio_func))
+        return
 
     @view_button(label='Country', style=ButtonStyle.gray, emoji='<:red_team:1233070943384109077>')
     async def country_button(self, interaction, button):
+        """
+        Opens the menu for editing the country.
+
+        Parameters
+        ----------
+        interaction : discord.Interaction
+            The interaction in which the button was pressed.
+
+        button : discord.ui.Button
+            The button that was pressed.
+
+        Returns
+        -------
+        None
+        """
+
+        # Sends the embed the user needs to react to with their country of preference
         e = Embed(
             description=f'{interaction.user.mention}, please react to __**this message**__ with the flag emoji of your '
                         'country! To remove your country, reach with ❌ instead.')
         e.set_author(name='Edit Country', icon_url='https://cdn.discordapp.com/emojis/1233070943384109077.png?size=256')
         await interaction.response.send_message(embed=e)
         await interaction.message.delete()
+
         creation_date = await interaction.original_response()
         creation_date = creation_date.created_at
 
         def check(r, user):
-            flag_check = True
+            """
+            Checks that the message the user reacted to is correct and that it's the correct user the one who reacted.
+            Returns the result of the check.
+
+            Parameters
+            ----------
+            r: discord.Reaction
+                The reaction that was received.
+
+            user: discord.User
+                The user who sent the reaction.
+
+            Returns
+            -------
+            Boolean
+            """
+
+            flag_check = True  # Flag to check whether the emoji is valid
+
+            # Checks if the user wants to remove the flag or not
             if str(r.emoji) == '❌':
                 return r.message.created_at == creation_date and user.id == interaction.user.id and flag_check
             else:
+                # Retrieves the country from the flag
                 try:
                     _ = bc.get_official_country(bc.letter_parser(str(r.emoji)).upper())
                 except KeyError:
                     flag_check = False
+
                 return r.message.created_at == creation_date and user.id == interaction.user.id and flag_check
 
+        # Waits for the user to react to the message
         try:
             flag = await interaction.client.wait_for('reaction_add', timeout=60, check=check)
         except TimeoutError:
             await interaction.channel.send(embed=be.timeout_embed(interaction.user.mention))
         else:
             if str(flag[0].emoji) == '❌':
-                update_profile(
-                    interaction.user, 'country', ["Unknown", ":flag_white:"])
+                # Removes the country data
+                update_profile(interaction.user.id, 'country', "Unknown")
+                update_profile(interaction.user.id, 'flag', ":flag_white:")
+
                 response = await interaction.channel.send(
                     embed=be.success_embed(f'{interaction.user.mention}, your country was updated successfully!'))
                 await response.delete(delay=10)
             else:
+                # Adds the country
                 flag_code = bc.letter_parser(str(flag[0].emoji)).upper()
-                update_profile(
-                    interaction.user, 'country', [bc.get_official_country(flag_code), f':flag_{flag_code.lower()}:'])
+                update_profile(interaction.user.id, 'country', bc.get_official_country(flag_code))
+                update_profile(interaction.user.id, 'flag', f':flag_{flag_code.lower()}:')
+
                 response = await interaction.channel.send(
                     embed=be.success_embed(f'{interaction.user.mention}, your country was updated successfully!'))
                 await response.delete(delay=10)
         await interaction.delete_original_response()
+        return
 
     @view_button(label='Socials', style=ButtonStyle.gray, emoji='<:multiplayer_icon:1233072100223488040>')
     async def socials_button(self, interaction, button):
+        """
+        Opens the menu for editing the socials.
+
+        Parameters
+        ----------
+        interaction : discord.Interaction
+            The interaction in which the button was pressed.
+
+        button : discord.ui.Button
+            The button that was pressed.
+
+        Returns
+        -------
+        None
+        """
         await interaction.response.send_modal(ModalMenu(
             title='Please enter the link to your profile!', ctx=self.ctx,
             inputs=[TextInput(
                 style=TextStyle.short, label='Link to your profile', max_length=100,
                 placeholder='To remove a profile, set the domain URL with no user ID')], func=socials_func))
+        return
 
     @view_button(label='Go back', style=ButtonStyle.blurple, emoji='<:settings_icon:1233072101808935013>')
     async def go_back_button(self, interaction, button):
+        """
+        Opens the previous menu.
+
+        Parameters
+        ----------
+        interaction : discord.Interaction
+            The interaction in which the button was pressed.
+
+        button : discord.ui.Button
+            The button that was pressed.
+
+        Returns
+        -------
+        None
+        """
         await go_back_func(interaction, self.ctx)
+        return
 
 
 async def bio_func(modal, interaction):
     await interaction.message.delete()
     response = modal.children[0].value.lower()
     if len(response) == 0:
-        update_profile(interaction.user, 'bio', '')
+        update_profile(interaction.user.id, 'bio', '')
         await interaction.response.send_message(embed=be.success_embed(
             f'{interaction.user.mention}, your bio was removed successfully!'))
     else:
@@ -185,36 +339,46 @@ async def bio_func(modal, interaction):
                     f'{interaction.user.mention}, that word is not allowed in a bio!'))
                 break
         else:
-            update_profile(interaction.user, 'bio', response)
+            update_profile(interaction.user.id, 'bio', response)
             await interaction.response.send_message(embed=be.success_embed(
                 f'{interaction.user.mention}, your bio was updated successfully!'))
 
 
 async def socials_func(modal, interaction):
+    """
+    Applies the selected action in the social menu.
+
+    Parameters
+    ----------
+    modal: discord.ext.commands.Modal
+        The modal of the menu.
+
+    interaction: discord.ext.commands.Interaction
+        The interaction through which the menu was called.
+
+    Returns
+    -------
+    None
+    """
+
     await interaction.message.delete()
+
+    # Cycles through the available socials
     socials = bj.json_load('grobDB/settings/socials.json')
     response = modal.children[0].value.lower()
     for social in socials:
         for social_link in social[1]:
+            # Checks if the response starts with the url of the current social
             if response.startswith(social_link):
+                # Checks if the ID is empty to remove the social, else it adds the specified profile
                 if len(response.split('/')[-1]) == 0:
-                    try:
-                        existing_profiles = (bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json'))[
-                            'socials']
-                    except (KeyError, FileNotFoundError):
-                        existing_profiles = check_profile(interaction.user.id)
-                    existing_profiles[social[2]] = ''
-                    update_profile(interaction.user, 'socials', existing_profiles)
+                    update_profile(interaction.user.id, socials[2], '')
+
                     await interaction.response.send_message(embed=be.success_embed(
                         f'{interaction.user.mention}, your **{social[0]}** profile was removed successfully!'))
                 else:
-                    try:
-                        existing_profiles = (bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json'))[
-                            'socials']
-                    except (KeyError, FileNotFoundError):
-                        existing_profiles = check_profile(interaction.user.id)
-                    existing_profiles[social[2]] = response
-                    update_profile(interaction.user, 'socials', existing_profiles)
+                    update_profile(interaction.user.id, socials[2], response)
+
                     await interaction.response.send_message(embed=be.success_embed(
                         f'{interaction.user.mention}, your **{social[0]}** profile was updated successfully!'))
                 return
@@ -223,6 +387,7 @@ async def socials_func(modal, interaction):
             f'{interaction.user.mention}, I couldn\'t recognize that link! '
             'Are you sure this Social Network is supported?\n'
             f'List of supported options: {", ".join(f"**{social[0]}**" for social in socials)}'))
+    return
 
 
 async def go_back_func(interaction, ctx):
@@ -249,7 +414,7 @@ class RankingsMenu(ViewModel):
                 ['https://www.mariokart64.com/mkds/profile.php?pid=',
                  'https://mariokartplayers.com/mkds/profile.php?pid=',
                  'https://mariokart64.com/mkds/profile.php?pid=',
-                 'https://www.mariokartplayers.com/mkds/profile.php?pid='], 'players_page', 'Players\' Page']))
+                 'https://www.mariokartplayers.com/mkds/profile.php?pid='], 'pp', 'Players\' Page']))
 
     @view_button(label='speedrun.com', style=ButtonStyle.gray, emoji='<:speedruncom:1233054965388415126>')
     async def speedrun_com_button(self, interaction, button):
@@ -259,7 +424,7 @@ class RankingsMenu(ViewModel):
                 style=TextStyle.short, label='Leave blank if you want to remove...', max_length=100,
                 placeholder='https://speedrun.com/users/', required=False)],
             func=rankings_func, special=[['https://www.speedrun.com/users/', 'https://speedrun.com/users/'],
-                                         'speedrun.com', 'speedrun.com']))
+                                         'src', 'speedrun.com']))
 
     @view_button(label='Cyberscore', style=ButtonStyle.gray, emoji='<:cyberscore:1233056528672489533>')
     async def cyberscore_button(self, interaction, button):
@@ -269,7 +434,7 @@ class RankingsMenu(ViewModel):
                 style=TextStyle.short, label='Leave blank if you want to remove...', max_length=100,
                 placeholder='https://cyberscore.me.uk/user/', required=False)],
             func=rankings_func, special=[['https://cyberscore.me.uk/user/', 'https://www.cyberscore.me.uk/user/'],
-                                         'cyberscore', 'Cyberscore']))
+                                         'cs', 'Cyberscore']))
 
     @view_button(label='Go back', style=ButtonStyle.blurple, emoji='<:settings_icon:1233072101808935013>')
     async def go_back_button(self, interaction, button):
@@ -280,7 +445,7 @@ async def rankings_func(modal, interaction, special):
     await interaction.message.delete()
     response = modal.children[0].value
     if len(response) == 0:
-        update_profile(interaction.user, special[1], 'No profile')
+        update_profile(interaction.user.id, special[1], 'No profile')
         await interaction.response.send_message(embed=be.success_embed(
             f'{interaction.user.mention}, your {special[2]} profile was removed successfully!'))
     else:
@@ -288,19 +453,23 @@ async def rankings_func(modal, interaction, special):
             try:
                 if response.lower().startswith(link) and len(response.split('/')[-1]) > 0:
                     update_res = response
-                    if special[1] == 'players_page':
+                    if special[1] == 'pp':
                         if int(response.split('=')[-1]) > 0:
-                            pp_db = bj.json_load('grobDB/ppDB/stats/players.json')
                             split_res = response.lower().split('?')[-1]
-                            for player in pp_db['times']:
-                                if player['info'].split('?')[-1] == split_res:
-                                    update_res = f'[{player['player']}]({response})'
-                                    break
+                            try:
+                                pp_db = bj.json_load('grobDB/ppDB/stats/players.json')
+                            except FileNotFoundError:
+                                update_res = f'[{split_res[3:]}]({response})'
                             else:
-                                update_res = f'[{split_res}]({response})'
+                                for player in pp_db['times']:
+                                    if player['info'].split('?')[-1] == split_res:
+                                        update_res = f'[{player['player']}]({response})'
+                                        break
+                                else:
+                                    update_res = f'[{split_res[3:]}]({response})'
                         else:
                             raise ValueError
-                    update_profile(interaction.user, special[1], update_res)
+                    update_profile(interaction.user.id, special[1], update_res)
                     await interaction.response.send_message(embed=be.success_embed(
                         f'{interaction.user.mention}, your {special[2]} profile was updated successfully!'))
                     break
@@ -350,47 +519,116 @@ async def main_add_friend_func(interaction, ctx):
 
 
 async def add_friend_func(modal, interaction):
+    """
+    Adds a friend code to the user's profile and the friend codes database.
+
+    Parameters
+    ----------
+    modal: discord.ext.commands.Modal
+        The modal of the menu.
+
+    interaction: discord.ext.commands.Interaction
+        The interaction through which the menu was called.
+
+    Returns
+    -------
+    None
+    """
     await interaction.message.delete()
+
+    # Checks that the friend code is formatted properly
     code = ''.join(modal.children[0].value.split('-'))
     if not code.isdigit():
         await interaction.response.send_message(
             embed=be.error_embed(f'{interaction.user.mention}, a Friend Code can only include digits (0-9)!'))
     else:
+        # Checks that the friend code is in the correct format
         if not len(code) == 12:
-            print('too long', code)
             await interaction.response.send_message(
                 embed=be.error_embed(f'{interaction.user.mention}, that is not a valid Friend Code!'))
         else:
-            code = code[:4] + '-' + code[4:8] + '-' + code[8:12]
-            friend_codes = bj.json_load('grobDB/settings/fc.json')
-            if code in friend_codes.keys():
-                if friend_codes[code] == interaction.user.id:
+            code = code[:4] + '-' + code[4:8] + '-' + code[8:12]  # Formats the friend code properly
+
+            # Opens the friend codes database
+            fcs_conn = connect("grobDB/usersDB/fcs.db")
+            fcs_cursor = fcs_conn.cursor()
+
+            # Checks if the friend code is already assigned to a user
+            fcs_cursor.execute("SELECT fc, user FROM fc WHERE fc = ?", (code,))
+            data = fcs_cursor.fetchone()
+            if data:
+                if data[1] == interaction.user.id:
                     await interaction.response.send_message(embed=be.error_embed(
                         f'{interaction.user.mention}, you have already saved that Friend Code!'))
                 else:
                     await interaction.response.send_message(embed=be.error_embed(
                         f'{interaction.user.mention}, another user already has that Friend Code!'))
             else:
-                try:
-                    user_friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-                except (KeyError, FileNotFoundError):
-                    user_friend_codes = check_profile(interaction.user.id)
-                user_friend_codes.append([code, modal.children[1].value])
-                update_profile(interaction.user, 'friend_codes', user_friend_codes)
-                friend_codes[code] = interaction.user.id
-                bj.json_dump('grobDB/settings/fc.json', friend_codes)
+                # Opens the friend codes database
+                conn = connect("grobDB/usersDB/users.db")
+                cursor = conn.cursor()
+
+                # Retrieves the user's friend codes
+                cursor.execute("SELECT fcs FROM profile WHERE id = ?", (interaction.user.id,))
+                data = loads(cursor.fetchone()[0])
+                conn.close()
+
+                # Defaults the friend codes to [] if they weren't found in the database
+                if not data:
+                    data = []
+
+                # Updates the friend codes
+                data.append([code, modal.children[1].value])
+                update_profile(interaction.user.id, 'fcs', dumps(data))
+                fcs_cursor.execute("INSERT INTO fc (user, fc) VALUES (?, ?)", (interaction.user.id, code))
+                fcs_conn.commit()
                 await interaction.response.send_message(embed=be.success_embed(
                     f'{interaction.user.mention}, your Friend Code was updated successfully!'))
 
+            fcs_conn.close()
+    return
+
 
 async def main_function_friend_func(interaction, label, func, ctx):
+    """
+    Creates the menu from which a friend code can be selected.
+
+    Parameters
+    ----------
+    interaction: discord.ext.commands.Interaction
+        The interaction through which the menu was called.
+
+    label: str
+        The label for the menu.
+
+    func: function
+        The function for the menu.
+
+    ctx: discord.ext.commands.Context
+        The context for the menu.
+
+    Returns
+    -------
+    None
+    """
+    # Opens the friend codes database
+    conn = connect("grobDB/usersDB/users.db")
+    cursor = conn.cursor()
+
+    # Checks if the friend code is already assigned to a user
+    cursor.execute("SELECT fcs FROM profile WHERE id = ?", (interaction.user.id,))
+    data = loads(cursor.fetchone()[0])
+    conn.close()
+
+    # Defaults the friend codes to [] if they weren't found in the database
+    if not data:
+        data = []
+
+    # Adds the friend codes to the options
     options = []
-    try:
-        friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-    except (KeyError, FileNotFoundError):
-        friend_codes = check_profile(interaction.user.id)
-    for friend_code in friend_codes:
+    for friend_code in data:
         options.append(SelectOption(label=friend_code[0], description=friend_code[1]))
+
     await interaction.channel.send(
         view=FunctionFriendCodeMenu(
             func=FunctionFriendCodeSelect(placeholder=label, options=options, func=func, ctx=ctx), ctx=ctx))
@@ -414,11 +652,27 @@ class FunctionFriendCodeMenu(ViewModel):
 
 
 async def edit_code_func(modal, interaction):
-    await interaction.delete_original_response()
+    """
+    Edits the user's friend code.
+
+    Parameters
+    ----------
+    modal: discord.ext.commands.Modal
+        The modal of the edit menu.
+
+    interaction: discord.ext.commands.Interaction
+        The interaction through which the menu was called.
+
+    Returns
+    -------
+    None
+    """
     if not modal.children[0].value:
         code = ''.join(modal.children[0].placeholder.split('-'))
     else:
         code = ''.join(modal.children[0].value.split('-'))
+
+    # Checks that the friend code is formatted properly
     if not code.isdigit():
         await interaction.response.send_message(
             embed=be.error_embed(f'{interaction.user.mention}, a Friend Code can only include digits (0-9)!'))
@@ -427,10 +681,19 @@ async def edit_code_func(modal, interaction):
             await interaction.response.send_message(
                 embed=be.error_embed(f'{interaction.user.mention}, that is not a valid Friend Code!'))
         else:
-            friend_codes = bj.json_load('grobDB/settings/fc.json')
-            code = code[:4] + '-' + code[4:8] + '-' + code[8:12]
-            if code in friend_codes.keys() and code != modal.children[0].placeholder:
-                if friend_codes[code] == interaction.user.id:
+            code = code[:4] + '-' + code[4:8] + '-' + code[8:12]  # Formats the friend code properly
+
+            # Opens the friend codes database
+            fcs_conn = connect("grobDB/usersDB/fcs.db")
+            fcs_cursor = fcs_conn.cursor()
+
+            # Checks if the friend code is already assigned to a user
+            fcs_cursor.execute("SELECT fc, user FROM fc WHERE fc = ?", (code,))
+            data = fcs_cursor.fetchone()
+
+            # Checks that the friend code is valid
+            if data and code != modal.children[0].placeholder:
+                if data[1] == interaction.user.id:
                     await interaction.response.send_message(embed=be.error_embed(
                         f'{interaction.user.mention}, you have already saved that Friend Code!'))
                 else:
@@ -440,26 +703,62 @@ async def edit_code_func(modal, interaction):
                 new_fc = [code, modal.children[1].value]
                 if not modal.children[1].value:
                     new_fc[1] = modal.children[1].placeholder
-                try:
-                    user_friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-                except (KeyError, FileNotFoundError):
-                    user_friend_codes = check_profile(interaction.user.id)
-                user_friend_codes.remove([modal.children[0].placeholder, modal.children[1].placeholder])
-                user_friend_codes.append(new_fc)
-                update_profile(interaction.user, 'friend_codes', user_friend_codes)
-                del friend_codes[modal.children[0].placeholder]
-                friend_codes[new_fc[0]] = interaction.user.id
-                bj.json_dump('grobDB/settings/fc.json', friend_codes)
+
+                # Opens the friend codes database
+                conn = connect("grobDB/usersDB/users.db")
+                cursor = conn.cursor()
+
+                # Checks if the friend code is already assigned to a user
+                cursor.execute("SELECT fcs FROM profile WHERE id = ?", (interaction.user.id,))
+                data = loads(cursor.fetchone()[0])
+                conn.close()
+
+                data.remove([modal.children[0].placeholder, modal.children[1].placeholder])  # Removes the friend code
+                data.append(new_fc)  # Adds the new one
+
+                # Updates the databases
+                update_profile(interaction.user.id, 'fcs', dumps(data))
+                fcs_cursor.execute("UPDATE fc SET fc = ? WHERE user = ?", (code, interaction.user.id))
+                fcs_cursor.execute("DELETE FROM fc WHERE fc = ?", (modal.children[0].placeholder,))
+                fcs_conn.commit()
                 await interaction.response.send_message(embed=be.success_embed(
                     f'{interaction.user.mention}, your Friend Code was updated successfully!'))
 
+            fcs_conn.close()
+    return
+
+
 
 async def edit_friend_code_function(select, interaction, ctx):
-    try:
-        friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-    except (KeyError, FileNotFoundError):
-        friend_codes = check_profile(interaction.user.id)
-    for friend_code in friend_codes:
+    """
+    Builds the menu for editing a friend code.
+
+    Parameters
+    ----------
+    select:
+        The selected friend code.
+
+    interaction: discord.ext.commands.Interaction
+        The interaction through which the menu was called.
+
+    ctx: discord.ext.commands.Context
+        The context through which the menu was called.
+
+    Returns
+    -------
+    None
+    """
+    # Opens the friend codes database
+    conn = connect("grobDB/usersDB/users.db")
+    cursor = conn.cursor()
+
+    # Checks if the friend code is already assigned to a user
+    cursor.execute("SELECT fcs FROM profile WHERE id = ?", (interaction.user.id,))
+    data = loads(cursor.fetchone()[0])
+    conn.close()
+
+    # Cycles through the user's friend codes to find the selected one
+    for friend_code in data:
         if friend_code[0] == select.values[0]:
             await interaction.response.send_modal(ModalMenu(
                 title='Please edit the Friend Code!', ctx=ctx,
@@ -468,23 +767,56 @@ async def edit_friend_code_function(select, interaction, ctx):
                         TextInput(style=TextStyle.short, label='Details about your Friend Code', max_length=25,
                                   placeholder=friend_code[1], required=False)],
                 func=edit_code_func))
+    return
 
 
 async def delete_friend_code_function(select, interaction, ctx):
-    try:
-        user_friend_codes = bj.json_load(f'grobDB/users/{interaction.user.id}/profile.json')['friend_codes']
-    except (KeyError, FileNotFoundError):
-        user_friend_codes = check_profile(interaction.user.id)
-    for friend_code in user_friend_codes:
+    """
+    Deletes the user's friend code.
+
+    Parameters
+    ----------
+    select:
+        The selected friend code.
+
+    interaction: discord.ext.commands.Interaction
+        The interaction through which the menu was called.
+
+    ctx: discord.ext.commands.Context
+        The context through which the menu was called.
+
+    Returns
+    -------
+    None
+    """
+    # Opens the friend codes database
+    conn = connect("grobDB/usersDB/users.db")
+    cursor = conn.cursor()
+
+    # Checks if the friend code is already assigned to a user
+    cursor.execute("SELECT fcs FROM profile WHERE id = ?", (interaction.user.id,))
+    data = loads(cursor.fetchone()[0])
+    conn.close()
+
+    # Cycles through the user's friend codes to find the selected one
+    for friend_code in data:
         if friend_code[0] == select.values[0]:
-            user_friend_codes.remove(friend_code)
-            update_profile(interaction.user, 'friend_codes', user_friend_codes)
-            friend_codes = bj.json_load('grobDB/settings/fc.json')
-            del friend_codes[friend_code[0]]
-            bj.json_dump('grobDB/settings/fc.json', friend_codes)
+            # Removes the friend code from the profile
+            data.remove(friend_code)
+            update_profile(interaction.user.id, 'fcs', dumps(data))
+
+            # Updates the friend codes database
+            fcs_conn = connect("grobDB/usersDB/fcs.db")
+            fcs_cursor = fcs_conn.cursor()
+            fcs_cursor.execute("DELETE FROM fc WHERE fc = ?", (friend_code[0],))
+            fcs_conn.commit()
+            fcs_conn.close()
+
             await ctx.send(embed=be.success_embed(
                 f'{interaction.user.mention}, your Friend Code was deleted successfully!'))
+
     await interaction.message.delete()
+    return
 
 
 def run(bot):

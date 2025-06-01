@@ -1,37 +1,76 @@
 from discord import ButtonStyle, Embed
 from discord.ui import Button, View
 from math import ceil
-from os import mkdir
+from sqlite3 import connect
 
 from better_functions import better_embeds as be, better_json as bj
 
 
 def check_profile(user_id):
-    try:
-        mkdir(f'grobDB/users/')
-    except FileExistsError:
-        pass
-    try:
-        mkdir(f'grobDB/users/{user_id}/')
-    except FileExistsError:
-        pass
-    default_profile = bj.json_load('grobDB/settings/default_profile.json')
-    bj.json_dump(f'grobDB/users/{user_id}/profile.json', default_profile)
-    return default_profile
+    """
+        Checks if the user is in the database, if it isn't, the user gets added with default values.
+
+        Parameters
+        ----------
+        user_id : int
+            The ID of the user that should be checked.
+
+        Returns
+        -------
+        None
+        """
+
+    # Opens the database
+    conn = connect("grobDB/usersDB/users.db")
+    cursor = conn.cursor()
+
+    # Tries to select the user
+    cursor.execute("SELECT 1 FROM profile WHERE id = ? LIMIT 1", (user_id,))
+    check = cursor.fetchone()
+
+    # Checks if a user wasn't found, if so the user gets added
+    if not check:
+        cursor.execute("""
+        INSERT INTO profile (id, bio, country, flag, patreon, twitch, x, yt, pp, src, cs, fcs)
+        VALUES (?, "", "", ":flag_white:", "", "", "", "", "", "", "", "[]")
+            """, (user_id,))
+        conn.commit()
+
+    conn.close()
+    return
 
 
-def check_exp(user_id):
-    try:
-        mkdir(f'grobDB/users/')
-    except FileExistsError:
-        pass
-    try:
-        mkdir(f'grobDB/users/{user_id}/')
-    except FileExistsError:
-        pass
-    default_exp = bj.json_load('grobDB/settings/default_exp.json')
-    bj.json_dump(f'grobDB/users/{user_id}/exp.json', default_exp)
-    return default_exp
+def check_exp(user_id: int):
+    """
+    Checks if the user is in the database, if it isn't, the user gets added with default values.
+
+    Parameters
+    ----------
+    user_id : int
+        The ID of the user that should be checked.
+
+    Returns
+    -------
+    None
+    """
+
+    # Opens the database
+    conn = connect("grobDB/usersDB/users.db")
+    cursor = conn.cursor()
+
+    # Tries to select the user
+    cursor.execute("SELECT 1 FROM exp WHERE id = ? LIMIT 1", (user_id,))
+    check = cursor.fetchone()
+
+    # Checks if a user wasn't found, if so the user gets added
+    if not check:
+        cursor.execute("""
+            INSERT INTO exp (id, availability, experience, level, rank)
+            VALUES (?, 0, 0, 0, 0)
+        """, (user_id,))
+        conn.commit()
+
+    conn.close()
 
 
 class ReWindButton(Button):
