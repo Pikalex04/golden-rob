@@ -47,8 +47,8 @@ def run(bot: Bot):
         # Selection of the user to display
         if user is None:
             user = ctx.author
-        else:
-            check_profile(user.id)  # Makes sure the user is present in the database
+            
+        check_profile(user.id)  # Makes sure the user is present in the database
 
         # Opens the database
         conn = connect("grobDB/usersDB/users.db")
